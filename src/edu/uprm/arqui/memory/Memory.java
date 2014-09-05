@@ -48,7 +48,7 @@ public class Memory {
 		int size = memory.size();
 		StringBuilder sb = new StringBuilder();
 		for(int i = 0; i < size; i++) {
-			sb.append(String.format("%02X: %s\n", i, NumberUtils.getUnsignedValueOf(memory.get(i))));
+			sb.append(String.format("%02X: %s\n", i, NumberUtils.getUnsignedValueOf(memory.get(i), 0, 7, 8)));
 		}
 		return sb.toString();
 	}
