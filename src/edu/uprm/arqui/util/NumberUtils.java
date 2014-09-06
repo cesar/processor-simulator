@@ -5,7 +5,7 @@ package edu.uprm.arqui.util;
  */
 public class NumberUtils {
 
-	private static final int NUM_BITS = 32;
+	private static final int INT_BITS = 32;
 	
 	/**
 	 * Gets the signed value for a specified bits. The most significant bit, starts with index 0
@@ -18,14 +18,14 @@ public class NumberUtils {
 	 * @return the signed number
 	 */
 	public static int getSignedValueOf(int value, int start, int end, int bitsToUse) {
-		if (bitsToUse > NUM_BITS || start < 0 || end >= bitsToUse || start > end) {
+		if (bitsToUse > INT_BITS || start < 0 || end >= bitsToUse || start > end) {
 			throw new IndexOutOfBoundsException(String.format("index %d start and %d end are out of bounds", start, end));
 		}
-		final int normalizedIndex = NUM_BITS - bitsToUse;
+		final int normalizedIndex = INT_BITS - bitsToUse;
 		start += normalizedIndex;
 		end += normalizedIndex;
 		int number = (value << start) >> start;
-		number >>= NUM_BITS - end - 1;
+		number >>= INT_BITS - end - 1;
 		return number;
 	}
 	
@@ -40,14 +40,14 @@ public class NumberUtils {
 	 * @return the unsigned number
 	 */
 	public static int getUnsignedValueOf(int value, int start, int end, int bitsToUse) {
-		if (bitsToUse > NUM_BITS || start < 0 || end >= bitsToUse || start > end) {
+		if (bitsToUse > INT_BITS || start < 0 || end >= bitsToUse || start > end) {
 			throw new IndexOutOfBoundsException(String.format("index %d start and %d end are out of bounds", start, end));
 		}
-		final int normalizedIndex = NUM_BITS - bitsToUse;
+		final int normalizedIndex = INT_BITS - bitsToUse;
 		start += normalizedIndex;
 		end += normalizedIndex;
 		int number = (value << start) >>> start;
-		number >>>= NUM_BITS - end - 1;
+		number >>>= INT_BITS - end - 1;
 		return number;
 	}
 	
@@ -65,5 +65,17 @@ public class NumberUtils {
 			return false;
 		}
 		return true;
+	}
+	
+	/**
+	 * Convert an integer value into its hexadecimal representation
+	 * @param value the integer value
+	 * @param digits the number of hex digits in the string
+	 * @return the hexadecimal representation of the int value
+	 */
+	public static String intToHexString(int value, int digits) {
+		int maximum = (1 << digits * 4) - 1;
+		String format = String.format("%%0%dX", digits);
+		return String.format(format, value & maximum).toUpperCase();
 	}
 }
