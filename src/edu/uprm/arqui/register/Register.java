@@ -1,23 +1,42 @@
 package edu.uprm.arqui.register;
 
-import java.util.Arrays;
-
 /**
  * Created by cesarcruz on 9/3/14.
  */
 public class Register {
 
-    private char[] bits;
+    private int length;
 
-    public Register(char[] bits) {
-        this.bits = bits;
+    private String id;
+
+    private short contents;
+
+    public Register(int length, String id) {
+        this.length = length;
+        this.id = id;
     }
 
-    public char[] getBits() {
-        return bits;
+    public int getLength() {
+        return length;
     }
 
-    public void setBits(char[] bits) {
-        this.bits = bits;
+    public void setLength(int length) {
+        this.length = length;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public short getContents() {
+        return contents;
+    }
+
+    public void setContents(short contents) {
+        this.contents = contents;
     }
 }
