@@ -76,6 +76,6 @@ public class NumberUtils {
 	public static String intToHexString(int value, int digits) {
 		int maximum = (1 << digits * 4) - 1;
 		String format = String.format("%%0%dX", digits);
-		return String.format(format, value & maximum).toUpperCase();
+		return String.format(format, value & maximum);
 	}
 }

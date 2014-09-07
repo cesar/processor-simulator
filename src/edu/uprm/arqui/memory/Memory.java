@@ -11,6 +11,7 @@ import edu.uprm.arqui.util.NumberUtils;
 public class Memory {
 
 	private List<Byte> memory;
+	private static int CELL_SIZE = 8;
 	
 	/**
 	 * Initialize the Memory based on the number of cells.
@@ -29,8 +30,31 @@ public class Memory {
 		return memory.get(location);
 	}
 	
+	/**
+	 * Set data at specific location in the memory
+	 * @param location memory location
+	 * @param data the value you want to set
+	 */
 	public void setDataAt(int location, byte data) {
 		memory.set(location, data);
+	}
+	
+	/**
+	 * Get a chunk of data given a specific location and the amount of cells
+	 * @param location memory location
+	 * @param cellsToFetch the amount of cells you want to fetch the data
+	 * @return the unsigned data
+	 */
+	public int getDataAt(int location, int cellsToFetch) {
+		int data = 0;
+		for (int i = 0; i < cellsToFetch; i++) {
+			data |= memory.get(location + i);
+			if(i < cellsToFetch - 1) {
+				data = data << CELL_SIZE;
+			}
+		}
+		int bits = CELL_SIZE * cellsToFetch;
+		return NumberUtils.getUnsignedValueOf(data, 0, bits - 1, bits);
 	}
 	
 	// TODO : Implementation of this method if we want add a chunk of data in multiple cells
