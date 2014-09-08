@@ -1,28 +1,65 @@
 package edu.uprm.arqui.register;
 
+import edu.uprm.arqui.processor.Processor;
+
 /**
  * Created by cesarcruz on 9/3/14.
  */
 public class MainRegisters {
 
-    private Register[] registers;
+    /**
+     * Main registers
+     */
+   private byte registers[];
 
-    public MainRegisters(){
+    /**
+     * Main register instance
+     */
+   private static MainRegisters instance = null;
 
-        this.registers = new Register[8];
+    /**
+     * Private constructor
+     */
+   private MainRegisters(){
+       this.registers = new byte[8];
 
-        for(int i = 0; i < 8; i++) {
-            this.registers[i] = new Register("R" + i,8, 0);
-        }
-    }
+       for(int i = 0; i < 8; i ++){
+           this.registers[i] = 0;
+       }
+   }
 
-    public Register getRegister(int address){
-        return this.registers[address];
-    }
+    /**
+     * Returns an instance of the main registers,
+     * if the instance does not exists, creates one.
+     * @return
+     */
+   public static MainRegisters getInstance(){
+       if(instance == null){
+           return new MainRegisters();
+       } else {
+           return instance;
+       }
+   }
 
-    public void setRegister(int address, Register register) {
-        if(register.getLength() <= 8) {
-            this.registers[address] = register;
-        }
-    }
+    /**
+     * Get the register specifies by the location
+     * @param location
+     * @return register byte
+     */
+   public byte getRegister(int location){
+       return this.registers[location];
+   }
+
+    /**
+     * Set register contents based on location
+     * @param val
+     * @param location
+     */
+   public void setRegiter(byte val, int location){
+
+       if(location < Processor.GENERAL_REGISTER_SIZE){
+           this.registers[location] = val;
+       }
+       //Throw exceptions here
+   }
 }

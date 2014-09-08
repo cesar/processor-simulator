@@ -3,6 +3,7 @@ package edu.uprm.arqui.memory;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.uprm.arqui.processor.Processor;
 import edu.uprm.arqui.util.NumberUtils;
 
 /**
@@ -10,23 +11,32 @@ import edu.uprm.arqui.util.NumberUtils;
  */
 public class Memory {
 
-	private static List<Byte> memory;
-	private static int CELL_SIZE = 8;
-	
+	private List<Byte> memory;
+
+    private static Memory instance;
+
 	/**
 	 * Initialize the Memory based on the number of cells.
 	 * Each cell has 8 bits and it is initialized to zero.
 	 * @param numberOfCells
 	 */
-	public Memory(int numberOfCells) {
+	private Memory(int numberOfCells) {
 		memory = new ArrayList<Byte>(numberOfCells);
 		
 		for(int i = 0; i < numberOfCells; i++){
 			memory.add((byte) 0);
 		}
 	}
+
+    public static Memory getInstance(){
+        if(instance == null){
+            return new Memory(Processor.MEMORY_SIZE);
+        } else {
+            return instance;
+        }
+    }
 	
-	public static byte getDataAt(int location) {
+	public byte getByte(int location) {
 		return memory.get(location);
 	}
 	
@@ -46,15 +56,15 @@ public class Memory {
 	 * @param cellsToFetch the amount of cells you want to fetch the data
 	 * @return the unsigned data
 	 */
-	public int getDataAt(int location, int cellsToFetch) {
+	public int getData(int location, int cellsToFetch) {
 		int data = 0;
 		for (int i = 0; i < cellsToFetch; i++) {
 			data |= memory.get(location + i);
 			if(i < cellsToFetch - 1) {
-				data = data << CELL_SIZE;
+				data = data << Processor.MEMORY_CELL_SIZE;
 			}
 		}
-		int bits = CELL_SIZE * cellsToFetch;
+		int bits = Processor.MEMORY_CELL_SIZE * cellsToFetch;
 		return NumberUtils.getUnsignedValueOf(data, 0, bits - 1, bits);
 	}
 	

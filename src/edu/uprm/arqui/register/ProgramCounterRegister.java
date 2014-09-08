@@ -2,25 +2,62 @@ package edu.uprm.arqui.register;
 
 /**
  * Created by cesarcruz on 9/3/14.
+ * Program counter class, follows lazy Singleton instantiation
  */
 public class ProgramCounterRegister {
 
-    private static Register contents;
+    /**
+     * Program Counter field
+     */
+    private int pc;
 
-    public ProgramCounterRegister() {
-       this.contents = new Register("PC", 11, 0);
+    /**
+     * Program counter instance
+     */
+    private ProgramCounterRegister instance = null;
+
+    /**
+     * Private constructor
+     */
+    private ProgramCounterRegister() {
+
+        this.pc = 0;
     }
 
-    public int getContents() {
-        return this.contents.getContents();
+    /**
+     * Method to get the ProgramCounter instance,
+     * if there is no instance, create a new one.
+     * @return
+     */
+    public static ProgramCounterRegister getInstance(){
+        if(instance == null){
+            return new ProgramCounterRegister();
+        } else {
+            return instance;
+        }
     }
 
-    //Not sure how I would modify this method, seems iffy
-    public void setContents(Register contents) {
-        this.contents = contents;
+    /**
+     * Get the program counter
+     * @return int representation of the program counter
+     */
+    public int getPc() {
+        return this.pc;
     }
 
+    /**
+     * Set the contents of the program counter
+     * @param int to place in program counter
+     */
+    public void setPc(int pc) {
+        this.pc = pc;
+    }
+
+    /**
+     * Increase the program counter by two,
+     * to represent the location of the next instruction in memory
+     */
     public void increaseCounter(){
-       this.contents.setContents(this.contents.getContents() + 2);
+       setPc(getPc() + 2);
     }
 }
