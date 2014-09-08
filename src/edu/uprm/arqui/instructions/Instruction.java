@@ -1,6 +1,7 @@
 package edu.uprm.arqui.instructions;
 
 import edu.uprm.arqui.util.NumberUtils;
+import edu.uprm.arqui.processor.Processor;
 
 /**
  * This class provides the implementation of an instruction.
@@ -11,7 +12,6 @@ import edu.uprm.arqui.util.NumberUtils;
 public class Instruction {
 	
 	private int instruction;
-	private static int OPCODE_SIZE = 5;
 	private static int RADIX = 16;
 	
 	/**
@@ -43,11 +43,11 @@ public class Instruction {
 	 * @return the opcode integer value
 	 */
 	public int getOpcode() {
-		return NumberUtils.getUnsignedValueOf(instruction, 0, OPCODE_SIZE - 1, 16);
+		return NumberUtils.getUnsignedValueOf(instruction, 0, Processor.OPCODE_SIZE - 1, 16);
 	}
 	
 	/**
-	 * Get the operand of an instruction given the start and end bits, that is,
+	 * Get the operand of a 16 bits instruction given the start and end bits, that is,
 	 * given the boundaries of the operand
 	 * @param start the first bit of the operand in the instruction
 	 * @param end the last bit of the operand in the instruction
@@ -58,7 +58,7 @@ public class Instruction {
 	}
 	
 	/**
-	 * Get the instruction in its hexadecimal representation
+	 * Get the instruction in its hexadecimal representation (4 hex digits)
 	 * @return a String with the hex representation of the instruction
 	 */
 	public String getInstructionInHex() {

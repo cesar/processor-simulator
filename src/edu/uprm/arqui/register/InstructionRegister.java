@@ -46,7 +46,7 @@ public class InstructionRegister {
 
         Memory mem = Memory.getInstance();
 
-        this.ir = mem.getData(pc.getPc().getContents(), 2); //fetch two cells, a word
+        this.ir = mem.getData(pc.getPc(), 2); //fetch two cells, a word
 
     }
 

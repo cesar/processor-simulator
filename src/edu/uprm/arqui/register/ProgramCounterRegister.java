@@ -14,7 +14,7 @@ public class ProgramCounterRegister {
     /**
      * Program counter instance
      */
-    private ProgramCounterRegister instance = null;
+    private static ProgramCounterRegister instance = null;
 
     /**
      * Private constructor
