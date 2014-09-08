@@ -10,7 +10,7 @@ import edu.uprm.arqui.util.NumberUtils;
  */
 public class Memory {
 
-	private List<Byte> memory;
+	private static List<Byte> memory;
 	private static int CELL_SIZE = 8;
 	
 	/**
@@ -26,9 +26,10 @@ public class Memory {
 		}
 	}
 	
-	public byte getDataAt(int location) {
+	public static byte getDataAt(int location) {
 		return memory.get(location);
 	}
+	
 	
 	/**
 	 * Set data at specific location in the memory

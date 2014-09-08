@@ -5,14 +5,14 @@ package edu.uprm.arqui.register;
  */
 public class ProgramCounterRegister {
 
-    private Register contents;
+    private static Register contents;
 
     public ProgramCounterRegister() {
        this.contents = new Register("PC", 11, 0);
     }
 
     public int getContents() {
-        return contents.getContents();
+        return this.contents.getContents();
     }
 
     //Not sure how I would modify this method, seems iffy
@@ -21,6 +21,6 @@ public class ProgramCounterRegister {
     }
 
     public void increaseCounter(){
-        this.contents.setContents(this.contents.getContents() + 1);
+       this.contents.setContents(this.contents.getContents() + 2);
     }
 }

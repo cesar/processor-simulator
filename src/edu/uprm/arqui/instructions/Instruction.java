@@ -18,8 +18,8 @@ public class Instruction {
 	 * Constructor for an instruction given as an integer value
 	 * @param instrucion
 	 */
-	public Instruction(int instrucion) {
-		this.instruction = instrucion;
+	public Instruction(int instruction) {
+		this.instruction = instruction;
 	}
 	
 	/**
