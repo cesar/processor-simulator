@@ -31,10 +31,9 @@ public class ProgramCounterRegister {
      */
     public static ProgramCounterRegister getInstance(){
         if(instance == null){
-            return new ProgramCounterRegister();
-        } else {
-            return instance;
+        	instance = new ProgramCounterRegister();
         }
+        return instance;
     }
 
     /**

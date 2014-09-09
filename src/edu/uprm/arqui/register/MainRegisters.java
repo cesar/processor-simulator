@@ -34,11 +34,10 @@ public class MainRegisters {
      * @return
      */
    public static MainRegisters getInstance(){
-       if(instance == null){
-           return new MainRegisters();
-       } else {
-           return instance;
-       }
+	   if(instance == null){
+		   instance = new MainRegisters();
+       } 
+       return instance;
    }
 
     /**
