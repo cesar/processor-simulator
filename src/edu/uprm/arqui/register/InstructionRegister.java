@@ -38,6 +38,14 @@ public class InstructionRegister {
     }
 
     /**
+     * Get the value of the instruction register
+     * @return ir contents
+     */
+    public int getValue(){
+        return this.ir;
+    }
+
+    /**
      * Fetches the next instruction as indicated by the program counter.
      */
     public void getNextInstruction(){
