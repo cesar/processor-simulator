@@ -3,7 +3,7 @@ package edu.uprm.arqui.assembler.addressingmodes;
 /**
  * Created by cesarcruz on 9/9/14.
  */
-public class RegisterAddressingMode implements Instruction{
+public class RegisterAddressingMode implements Instruction {
 
 
     /**
@@ -35,7 +35,7 @@ public class RegisterAddressingMode implements Instruction{
      */
     private int regC;
 
-    public RegisterAddressingMode(){
+    public RegisterAddressingMode() {
         this.mnemonic = null;
 
         this.regA = 0;
@@ -70,6 +70,7 @@ public class RegisterAddressingMode implements Instruction{
 
     /**
      * Set the mneumonic of an instruction
+     *
      * @param mnemonic
      */
     public void setMnemonic(String mnemonic) {
@@ -78,6 +79,7 @@ public class RegisterAddressingMode implements Instruction{
 
     /**
      * Get the register A location
+     *
      * @return
      */
     public int getRegA() {
@@ -86,6 +88,7 @@ public class RegisterAddressingMode implements Instruction{
 
     /**
      * Set the register A location
+     *
      * @param regA
      */
     public void setRegA(int regA) {
@@ -94,6 +97,7 @@ public class RegisterAddressingMode implements Instruction{
 
     /**
      * Get the register B location
+     *
      * @return
      */
     public int getRegB() {
@@ -102,6 +106,7 @@ public class RegisterAddressingMode implements Instruction{
 
     /**
      * Set the register B location
+     *
      * @param regB
      */
     public void setRegB(int regB) {
@@ -110,6 +115,7 @@ public class RegisterAddressingMode implements Instruction{
 
     /**
      * Get the register C location
+     *
      * @return
      */
     public int getRegC() {
@@ -118,6 +124,7 @@ public class RegisterAddressingMode implements Instruction{
 
     /**
      * Set the register C location
+     *
      * @param rebC
      */
     public void setRegC(int rebC) {

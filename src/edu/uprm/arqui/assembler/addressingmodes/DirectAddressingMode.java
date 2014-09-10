@@ -3,7 +3,7 @@ package edu.uprm.arqui.assembler.addressingmodes;
 /**
  * Created by cesarcruz on 9/9/14.
  */
-public class DirectAddressingMode implements Instruction{
+public class DirectAddressingMode implements Instruction {
 
     /**
      * Addressing mode
@@ -31,6 +31,7 @@ public class DirectAddressingMode implements Instruction{
 
     /**
      * Get the mnemonic of the instruction
+     *
      * @return
      */
     public String getMnemonic() {
@@ -44,6 +45,7 @@ public class DirectAddressingMode implements Instruction{
 
     /**
      * Set the mneumonic of an instruction
+     *
      * @param mnemonic
      */
     public void setMnemonic(String mnemonic) {
@@ -52,6 +54,7 @@ public class DirectAddressingMode implements Instruction{
 
     /**
      * Get the address of the A register
+     *
      * @return
      */
     public int getRegA() {
@@ -60,6 +63,7 @@ public class DirectAddressingMode implements Instruction{
 
     /**
      * Set the address of the A register
+     *
      * @param regA
      */
     public void setRegA(int regA) {
@@ -68,6 +72,7 @@ public class DirectAddressingMode implements Instruction{
 
     /**
      * Get the operand of the instruction
+     *
      * @return
      */
     public int getOperand() {
@@ -76,6 +81,7 @@ public class DirectAddressingMode implements Instruction{
 
     /**
      * Set the operand of the instruction
+     *
      * @param operand
      */
     public void setOperand(int operand) {

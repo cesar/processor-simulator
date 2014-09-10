@@ -20,34 +20,36 @@ public class InstructionRegister {
     /**
      * Private constructor
      */
-    private InstructionRegister(){
+    private InstructionRegister() {
         this.ir = 0;
     }
 
     /**
      * Returns an instance of the instruction register,
      * if the instance does not exists, creates one.
+     *
      * @return
      */
-    public static InstructionRegister getInstance(){
-        if(instance == null){
-        	instance = new InstructionRegister();
-        } 
+    public static InstructionRegister getInstance() {
+        if (instance == null) {
+            instance = new InstructionRegister();
+        }
         return instance;
     }
 
     /**
      * Get the value of the instruction register
+     *
      * @return ir contents
      */
-    public int getValue(){
+    public int getValue() {
         return this.ir;
     }
 
     /**
      * Fetches the next instruction as indicated by the program counter.
      */
-    public void getNextInstruction(){
+    public void getNextInstruction() {
 
         ProgramCounterRegister pc = ProgramCounterRegister.getInstance();
 
