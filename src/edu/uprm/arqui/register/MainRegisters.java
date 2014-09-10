@@ -54,7 +54,7 @@ public class MainRegisters {
      * @param val
      * @param location
      */
-   public void setRegiter(byte val, int location){
+   public void setRegister(byte val, int location){
 
        if(location < Processor.GENERAL_REGISTER_SIZE){
            this.registers[location] = val;

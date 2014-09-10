@@ -7,7 +7,7 @@ public class RegisterAddressingMode implements Instruction{
 
 
     /**
-     * Field containing instruction typess
+     * Field containing instruction types
      */
     private String type;
     /**
@@ -16,7 +16,7 @@ public class RegisterAddressingMode implements Instruction{
     private static String addressingMode = "register";
 
     /**
-     * Field containing instruction mneumonic
+     * Field containing instruction mnemonic
      */
     private String mnemonic;
 
@@ -46,7 +46,7 @@ public class RegisterAddressingMode implements Instruction{
     }
 
     /**
-     * Get the mneumonic of the instruction
+     * Get the mnemonic of the instruction
      * @return
      */
     public String getMnemonic() {
