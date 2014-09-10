@@ -30,10 +30,9 @@ public class Memory {
 
     public static Memory getInstance(){
         if(instance == null){
-            return new Memory(Processor.MEMORY_SIZE);
-        } else {
-            return instance;
-        }
+            instance = new Memory(Processor.MEMORY_SIZE);
+        } 
+        return instance;
     }
 	
 	public byte getByte(int location) {

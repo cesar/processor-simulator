@@ -1,6 +1,7 @@
 package edu.uprm.arqui.io;
 
 import edu.uprm.arqui.memory.Memory;
+import edu.uprm.arqui.processor.Processor;
 import edu.uprm.arqui.util.NumberUtils;
 
 
@@ -17,10 +18,10 @@ public class IOPorts {
 	private static final int HEX_DISPLAY_LOCATION = 136;
 	private static final int ASCII_LOCATION = 140;
 	
-	private Memory memory;
+	private static Memory memory;
 	
-	public IOPorts(Memory memory) {
-		this.memory = memory;	
+	public IOPorts() {	
+		memory = Memory.getInstance();
 	}
 	
 	/**
@@ -36,7 +37,7 @@ public class IOPorts {
 	 * @return the 8 bits from the memory
 	 */
 	public byte getKeyboard() {
-		return memory.getDataAt(KEYBOARD_LOCATION);
+		return memory.getByte(KEYBOARD_LOCATION);
 	}
 	
 	/**
@@ -52,7 +53,7 @@ public class IOPorts {
 	 * @return the 8 bits value
 	 */
 	public byte getParallelInput() {
-		return memory.getDataAt(PARALLEL_INPUT_LOCATION);
+		return memory.getByte(PARALLEL_INPUT_LOCATION);
 	}
 	
 	/**
@@ -60,7 +61,7 @@ public class IOPorts {
 	 * @return the 8 bits value
 	 */
 	public byte getParallelOutput() {
-		return memory.getDataAt(PARALLEL_OUTPUT_LOCATION);
+		return memory.getByte(PARALLEL_OUTPUT_LOCATION);
 	}
 	
 	/**
@@ -70,8 +71,8 @@ public class IOPorts {
 	public String getHexDisplay() {
 		int hexDisplay = 0;
 		for (int i = 0; i < 4; i++) {
-			int value = memory.getDataAt(HEX_DISPLAY_LOCATION + i);
-			hexDisplay |= NumberUtils.getUnsignedValueOf(value, 4, 7, 8);
+			int value = memory.getByte(HEX_DISPLAY_LOCATION + i);
+			hexDisplay |= NumberUtils.getUnsignedValueOf(value, 4, 7, Processor.MEMORY_CELL_SIZE);
 			if(i < 3) {
 				hexDisplay = hexDisplay << 4;
 			}
@@ -86,8 +87,8 @@ public class IOPorts {
 	public String getASCII() {
 		StringBuilder sb = new StringBuilder();
 		for(int i = 0; i < 16; i++) {
-			int data = memory.getDataAt(ASCII_LOCATION + i);
-			char character = (char) NumberUtils.getUnsignedValueOf(data, 0, 7, 8);
+			int data = memory.getByte(ASCII_LOCATION + i);
+			char character = (char) NumberUtils.getUnsignedValueOf(data, 0, Processor.MEMORY_CELL_SIZE - 1, Processor.MEMORY_CELL_SIZE);
 			sb.append(character);
 		}
 		String ascii = sb.toString();

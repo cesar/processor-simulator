@@ -6,10 +6,12 @@ package edu.uprm.arqui.processor;
 public class Processor {
 
     public static int OPCODE_SIZE = 5;
+    
+    public static int GENERAL_REGISTER_SIZE = 8;
+    
+    public static int NUMBER_GPR = 8;
 
     public static int MEMORY_CELL_SIZE = 8;
-
-    public static int GENERAL_REGISTER_SIZE = 8;
 
     public static int MEMORY_SIZE = 256;
 
@@ -27,4 +29,8 @@ public class Processor {
 
     public static String DATA_MOVE_INSTRUCTION = "data_move";
 
+    
+    public static int IR_SIZE = 16;
+    
+    
 }

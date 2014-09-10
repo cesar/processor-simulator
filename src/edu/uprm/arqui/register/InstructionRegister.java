@@ -31,10 +31,9 @@ public class InstructionRegister {
      */
     public static InstructionRegister getInstance(){
         if(instance == null){
-            return new InstructionRegister();
-        } else {
-            return instance;
-        }
+        	instance = new InstructionRegister();
+        } 
+        return instance;
     }
 
     /**
