@@ -28,7 +28,6 @@ public class Processor {
     public static String CONTROL_PROGRAM_INSTRUCTION = "control";
 
     public static String DATA_MOVE_INSTRUCTION = "data_move";
-
     
     public static int IR_SIZE = 16;
     
