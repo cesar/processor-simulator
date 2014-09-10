@@ -5,10 +5,14 @@ package edu.uprm.arqui.assembler.addressingmodes;
  */
 public interface Instruction {
 
+    public void setMnemonic(String mnemonic);
+
     public String getMnemonic();
 
     public String getAddressingMode();
 
     public String getInstructionType();
+
+    public void setInstructionType(String type);
 
 }

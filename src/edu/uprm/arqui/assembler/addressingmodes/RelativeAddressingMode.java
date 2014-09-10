@@ -11,6 +11,11 @@ public class RelativeAddressingMode implements Instruction{
     private static String addressingMode = "relative";
 
     /**
+     * Field containing type of instruction
+     */
+    private String type;
+
+    /**
      * Field containing the mnemonic of the instruction
      */
     private String mnemonic;
@@ -56,5 +61,15 @@ public class RelativeAddressingMode implements Instruction{
     @Override
     public String getAddressingMode() {
         return this.addressingMode;
+    }
+
+    @Override
+    public String getInstructionType() {
+        return this.type;
+    }
+
+    @Override
+    public void setInstructionType(String type) {
+        this.type = type;
     }
 }

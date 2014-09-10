@@ -14,28 +14,27 @@ import edu.uprm.arqui.util.NumberUtils;
 public class InstructionBuilder {
 
     public static Instruction build(int ir){
-        int opcode = NumberUtils.getSignedValueOf(ir.getValue(), 0, Processor.OPCODE_SIZE - 1, 16);
+        int opcode = NumberUtils.getSignedValueOf(ir, 0, Processor.OPCODE_SIZE - 1, 16);
 
-        InstructionTable specs = InstructionTable.getInformation(opcode);
+        Specification specs = InstructionTable.getSpecification(opcode);
 
-        if(specs.addressingMode == "register"){
+        if(specs.getAddressingMode() == Processor.REGISTER_ADDRESSING_MODE){
             return registerInstructionBuilder(specs);
 
-        } else if(specs.addressingMode == "direct"){
+        } else if(specs.getAddressingMode() == Processor.DIRECT_ADDRESSING_MODE){
             return directInstructionBuilder(specs);
-        } else if(specs.addressingMode == "relative"){
-            return relativeInstructionBuilder();
+        } else if(specs.getAddressingMode() == Processor.RELATIVE_ADDRESSING_MODE){
+            return relativeInstructionBuilder(specs);
         } else {
             throw new UnsupportedOperationException();
         }
 
     }
 
-    private static RegisterAddressingMode registerInstructionBuilder(InstructionTable specs){
+    private static RegisterAddressingMode registerInstructionBuilder(Specification specs){
+        RegisterAddressingMode instruction = new RegisterAddressingMode();
 
         InstructionRegister ir = InstructionRegister.getInstance();
-
-        RegisterAddressingMode instruction = new RegisterAddressingMode();
 
         int regA = NumberUtils.getUnsignedValueOf(ir.getValue(), Processor.OPCODE_SIZE, Processor.OPCODE_SIZE + 2, 16);
 
@@ -49,14 +48,14 @@ public class InstructionBuilder {
 
         instruction.setRegC(regC);
 
-        instruction.setMnemonic(specs.Mnemonic);
+        instruction.setMnemonic(specs.getMnemonic());
 
-        instruction.setInstructionType(specs.Type);
+        instruction.setInstructionType(specs.getType());
 
         return instruction;
     }
 
-    private static DirectAddressingMode directInstructionBuilder(InstructionTable specs){
+    private static DirectAddressingMode directInstructionBuilder(Specification specs){
         DirectAddressingMode instruction = new DirectAddressingMode();
 
         InstructionRegister ir = InstructionRegister.getInstance();
@@ -71,11 +70,13 @@ public class InstructionBuilder {
 
         instruction.setMnemonic(specs.getMnemonic());
 
+        instruction.setInstructionType(specs.getType());
+
         return instruction;
 
     }
 
-    private static RelativeAddressingMode relativeInstructionBuilder(InstructionTable specs){
+    private static RelativeAddressingMode relativeInstructionBuilder(Specification specs){
 
         RelativeAddressingMode instruction = new RelativeAddressingMode();
 
@@ -85,7 +86,9 @@ public class InstructionBuilder {
 
         instruction.setOperand(operand);
 
-        instruction.setMnemonic(specs.getMnemonic);
+        instruction.setMnemonic(specs.getMnemonic());
+
+        instruction.setInstructionType(specs.getType());
 
         return instruction;
     }

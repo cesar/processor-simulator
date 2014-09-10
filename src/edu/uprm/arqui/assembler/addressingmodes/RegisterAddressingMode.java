@@ -7,6 +7,10 @@ public class RegisterAddressingMode implements Instruction{
 
 
     /**
+     * Field containing instruction typess
+     */
+    private String type;
+    /**
      * Addressing Mode
      */
     private static String addressingMode = "register";
@@ -52,6 +56,16 @@ public class RegisterAddressingMode implements Instruction{
     @Override
     public String getAddressingMode() {
         return this.addressingMode;
+    }
+
+    @Override
+    public String getInstructionType() {
+        return this.type;
+    }
+
+    @Override
+    public void setInstructionType(String type) {
+        this.type = type;
     }
 
     /**
@@ -109,4 +123,6 @@ public class RegisterAddressingMode implements Instruction{
     public void setRegC(int rebC) {
         this.regC = rebC;
     }
+
+
 }

@@ -25,6 +25,11 @@ public class DirectAddressingMode implements Instruction{
     private int operand;
 
     /**
+     * Field containing instruction type
+     */
+    private String type;
+
+    /**
      * Get the mnemonic of the instruction
      * @return
      */
@@ -75,5 +80,15 @@ public class DirectAddressingMode implements Instruction{
      */
     public void setOperand(int operand) {
         this.operand = operand;
+    }
+
+    @Override
+    public String getInstructionType() {
+        return type;
+    }
+
+    @Override
+    public void setInstructionType(String type) {
+        this.type = type;
     }
 }
