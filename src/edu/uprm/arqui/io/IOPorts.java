@@ -18,10 +18,10 @@ public class IOPorts {
 	private static final int HEX_DISPLAY_LOCATION = 136;
 	private static final int ASCII_LOCATION = 140;
 	
-	private Memory memory;
+	private static Memory memory;
 	
-	public IOPorts(Memory memory) {
-		this.memory = memory;	
+	public IOPorts() {	
+		memory = Memory.getInstance();
 	}
 	
 	/**
