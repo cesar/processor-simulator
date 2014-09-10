@@ -3,7 +3,7 @@ package edu.uprm.arqui.assembler.addressingmodes;
 /**
  * Created by cesarcruz on 9/9/14.
  */
-public class RelativeAddressingMode implements Instruction{
+public class RelativeAddressingMode implements Instruction {
 
     /**
      * Addressing mode
@@ -27,8 +27,8 @@ public class RelativeAddressingMode implements Instruction{
 
     /**
      * Get the mneumonic of the instruction
-     * @return
      *
+     * @return
      */
     public String getMnemonic() {
         return mnemonic;
@@ -36,6 +36,7 @@ public class RelativeAddressingMode implements Instruction{
 
     /**
      * Set the mneumonic of the instruction
+     *
      * @param mnemonic
      */
     public void setMnemonic(String mnemonic) {
@@ -44,6 +45,7 @@ public class RelativeAddressingMode implements Instruction{
 
     /**
      * Get the operand of the instrcuton
+     *
      * @return
      */
     public int getOperand() {
@@ -52,6 +54,7 @@ public class RelativeAddressingMode implements Instruction{
 
     /**
      * Set the operand of the instruction
+     *
      * @param operand
      */
     public void setOperand(int operand) {

@@ -14,142 +14,143 @@ import javax.swing.WindowConstants;
 
 public class MainGUIWindow extends JFrame implements ActionListener {
 
-	private static final long serialVersionUID = 1L;
-	private JPanel lowerCenterPanel;
-	private JPanel lowerLeftPanel;
-	private JPanel lowerRightPanel;
-	
-	private JButton loadFile;
-	private JButton run;
-	private JButton step;
-	private JButton exit;
-	
-	private JFileChooser fc;
+    private static final long serialVersionUID = 1L;
+    private JPanel lowerCenterPanel;
+    private JPanel lowerLeftPanel;
+    private JPanel lowerRightPanel;
 
-	private MemoryTable memoryTable;
-	//private FileTable displayFile;
-	private Registers registers;
-	private IOPanel ioPanelPorts;
+    private JButton loadFile;
+    private JButton run;
+    private JButton step;
+    private JButton exit;
 
-	/**
-	 * Create and initialize a new RISC Microprocessor Simulator Windows
-	 */
-	public MainGUIWindow() {
-		initializeGUI();
-	}
-	
-	/**
-	 * Initialize the MainGUIWindow components
-	 */
-	private void initializeGUI() {
-		this.lowerCenterPanel = new JPanel();
-		this.lowerLeftPanel = new JPanel();
-		this.lowerRightPanel = new JPanel();
-		this.loadFile = new JButton("Load File");
-		this.run = new JButton("Run");
-		this.step = new JButton("Step");
-		this.exit = new JButton("Exit");
-		this.fc = new JFileChooser();
-		this.memoryTable = new MemoryTable();
-		this.registers = new Registers();
-		this.ioPanelPorts = new IOPanel();
-		
-		setLayout(null);
-		add(registers);
-		add(memoryTable);
-		add(ioPanelPorts);
-		
-		setLowerLeftPanel();
-		add(lowerLeftPanel);
-		setLowerCenterPanel();
-		add(lowerCenterPanel);
-		setLowerRightPanel();
-		add(lowerRightPanel);
+    private JFileChooser fc;
 
-		this.loadFile.addActionListener(this);
-		this.run.addActionListener(this);
-		this.step.addActionListener(this);
-		this.exit.addActionListener(this);
-		
-		setFrame();
-		
-	}
-	
-	/**
-	 * Set MainGUI window size, title, location and parameters.
-	 */
-	private void setFrame() {
-		setTitle("RISC Microprocessor Simulator");
-		setSize(600, 400);
-		setLocationRelativeTo(null);
-		setResizable(false);
-		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-	}
-	
-	/**
-	 * Set "Load" button position in the MainGUI window.
-	 */
-	private void setLowerLeftPanel() {
-		this.lowerLeftPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
-		this.lowerLeftPanel.setLocation(125, 325);
-		this.lowerLeftPanel.setSize(100, 50);
+    private MemoryTable memoryTable;
+    //private FileTable displayFile;
+    private Registers registers;
+    private IOPanel ioPanelPorts;
 
-		this.lowerLeftPanel.add(loadFile);
-	}
-	/**
-	 * Set "Run" and "Step" buttons position in the MainGUI window.
-	 */
-	private void setLowerCenterPanel() {
-		this.lowerCenterPanel.setLayout(new FlowLayout(FlowLayout.LEADING));
-		this.lowerCenterPanel.setLocation(240, 325);
-		this.lowerCenterPanel.setSize(150, 50);
+    /**
+     * Create and initialize a new RISC Microprocessor Simulator Windows
+     */
+    public MainGUIWindow() {
+        initializeGUI();
+    }
 
-		this.lowerCenterPanel.add(run);
-		this.lowerCenterPanel.add(step);
-	}
-	
-	/**
-	 * Set "Exit" button position in the MainGUI window
-	 */
-	private void setLowerRightPanel() {
-		this.lowerRightPanel.setLayout(new FlowLayout(FlowLayout.LEADING));
-		this.lowerRightPanel.setLocation(390, 325);
-		this.lowerRightPanel.setSize(100, 50);
+    /**
+     * Initialize the MainGUIWindow components
+     */
+    private void initializeGUI() {
+        this.lowerCenterPanel = new JPanel();
+        this.lowerLeftPanel = new JPanel();
+        this.lowerRightPanel = new JPanel();
+        this.loadFile = new JButton("Load File");
+        this.run = new JButton("Run");
+        this.step = new JButton("Step");
+        this.exit = new JButton("Exit");
+        this.fc = new JFileChooser();
+        this.memoryTable = new MemoryTable();
+        this.registers = new Registers();
+        this.ioPanelPorts = new IOPanel();
 
-		this.lowerRightPanel.add(exit);
-	}
-	
-	
-	public static void main(String[] args) {
-		SwingUtilities.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				MainGUIWindow mainGUI = new MainGUIWindow();
-				mainGUI.setVisible(true);
-			}
-		});
-	}
+        setLayout(null);
+        add(registers);
+        add(memoryTable);
+        add(ioPanelPorts);
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		if(e.getSource() == loadFile) {
-			fc.showOpenDialog(this);
-			if(fc.getSelectedFile() != null) {
-				// TODO: Implement logic for opening and reading the file. Update the fields
-			}
-		} else if(e.getSource() == run) {
-			// TODO: Implement logic for running the simulation
+        setLowerLeftPanel();
+        add(lowerLeftPanel);
+        setLowerCenterPanel();
+        add(lowerCenterPanel);
+        setLowerRightPanel();
+        add(lowerRightPanel);
 
-		} else if(e.getSource() == exit) {
-			int result = JOptionPane.showConfirmDialog(this,
-					"Are you sure you want to exit the application?",
-					"Exit Application",
-					JOptionPane.YES_NO_OPTION);
+        this.loadFile.addActionListener(this);
+        this.run.addActionListener(this);
+        this.step.addActionListener(this);
+        this.exit.addActionListener(this);
 
-			if (result == JOptionPane.YES_OPTION) {
-				this.dispose();
-			}
-		}
-	}
+        setFrame();
+
+    }
+
+    /**
+     * Set MainGUI window size, title, location and parameters.
+     */
+    private void setFrame() {
+        setTitle("RISC Microprocessor Simulator");
+        setSize(600, 400);
+        setLocationRelativeTo(null);
+        setResizable(false);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+    }
+
+    /**
+     * Set "Load" button position in the MainGUI window.
+     */
+    private void setLowerLeftPanel() {
+        this.lowerLeftPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+        this.lowerLeftPanel.setLocation(125, 325);
+        this.lowerLeftPanel.setSize(100, 50);
+
+        this.lowerLeftPanel.add(loadFile);
+    }
+
+    /**
+     * Set "Run" and "Step" buttons position in the MainGUI window.
+     */
+    private void setLowerCenterPanel() {
+        this.lowerCenterPanel.setLayout(new FlowLayout(FlowLayout.LEADING));
+        this.lowerCenterPanel.setLocation(240, 325);
+        this.lowerCenterPanel.setSize(150, 50);
+
+        this.lowerCenterPanel.add(run);
+        this.lowerCenterPanel.add(step);
+    }
+
+    /**
+     * Set "Exit" button position in the MainGUI window
+     */
+    private void setLowerRightPanel() {
+        this.lowerRightPanel.setLayout(new FlowLayout(FlowLayout.LEADING));
+        this.lowerRightPanel.setLocation(390, 325);
+        this.lowerRightPanel.setSize(100, 50);
+
+        this.lowerRightPanel.add(exit);
+    }
+
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                MainGUIWindow mainGUI = new MainGUIWindow();
+                mainGUI.setVisible(true);
+            }
+        });
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == loadFile) {
+            fc.showOpenDialog(this);
+            if (fc.getSelectedFile() != null) {
+                // TODO: Implement logic for opening and reading the file. Update the fields
+            }
+        } else if (e.getSource() == run) {
+            // TODO: Implement logic for running the simulation
+
+        } else if (e.getSource() == exit) {
+            int result = JOptionPane.showConfirmDialog(this,
+                    "Are you sure you want to exit the application?",
+                    "Exit Application",
+                    JOptionPane.YES_NO_OPTION);
+
+            if (result == JOptionPane.YES_OPTION) {
+                this.dispose();
+            }
+        }
+    }
 
 }

@@ -8,8 +8,15 @@ import edu.uprm.arqui.util.NumberUtils;
  * Created by cesarcruz on 9/8/14.
  */
 public class Dissasembler {
-    InstructionRegister ir = InstructionRegister.getInstance();
 
+    public static Instruction dissasemblrInstruction(){
 
+        InstructionRegister ir = InstructionRegister.getInstance();
 
+        int irContents = ir.getValue();
+
+        Instruction instruction = InstructionBuilder.build(irContents);
+
+        return instruction;
+    }
 }

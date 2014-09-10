@@ -20,7 +20,7 @@ public class Specification {
      */
     private String type;
 
-    public Specification(String addressingMode, String mnemonic, String type){
+    public Specification(String addressingMode, String mnemonic, String type) {
         this.addressingMode = addressingMode;
 
         this.mnemonic = mnemonic;
@@ -31,6 +31,7 @@ public class Specification {
 
     /**
      * Get the addressing mode of an instruction
+     *
      * @return
      */
     public String getAddressingMode() {
@@ -39,6 +40,7 @@ public class Specification {
 
     /**
      * Set the addressing mode of an instruction
+     *
      * @param addressingMode
      */
     public void setAddressingMode(String addressingMode) {
@@ -47,6 +49,7 @@ public class Specification {
 
     /**
      * Get the mnemonic of an instruction
+     *
      * @return
      */
     public String getMnemonic() {
@@ -55,6 +58,7 @@ public class Specification {
 
     /**
      * Set the mnemonic of an instruction
+     *
      * @param mnemonic
      */
     public void setMnemonic(String mnemonic) {
@@ -63,6 +67,7 @@ public class Specification {
 
     /**
      * Get the type of an instruction
+     *
      * @return
      */
     public String getType() {
@@ -71,6 +76,7 @@ public class Specification {
 
     /**
      * Set the type of an instruction
+     *
      * @param type
      */
     public void setType(String type) {

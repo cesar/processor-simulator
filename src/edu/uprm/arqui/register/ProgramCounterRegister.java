@@ -27,17 +27,19 @@ public class ProgramCounterRegister {
     /**
      * Method to get the ProgramCounter instance,
      * if there is no instance, create a new one.
+     *
      * @return
      */
-    public static ProgramCounterRegister getInstance(){
-        if(instance == null){
-        	instance = new ProgramCounterRegister();
+    public static ProgramCounterRegister getInstance() {
+        if (instance == null) {
+            instance = new ProgramCounterRegister();
         }
         return instance;
     }
 
     /**
      * Get the program counter
+     *
      * @return int representation of the program counter
      */
     public int getPc() {
@@ -46,6 +48,7 @@ public class ProgramCounterRegister {
 
     /**
      * Set the contents of the program counter
+     *
      * @param int to place in program counter
      */
     public void setPc(int pc) {
@@ -56,7 +59,7 @@ public class ProgramCounterRegister {
      * Increase the program counter by two,
      * to represent the location of the next instruction in memory
      */
-    public void increaseCounter(){
-       setPc(getPc() + 2);
+    public void increaseCounter() {
+        setPc(getPc() + 2);
     }
 }

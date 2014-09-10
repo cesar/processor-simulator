@@ -13,17 +13,17 @@ import edu.uprm.arqui.util.NumberUtils;
  */
 public class InstructionBuilder {
 
-    public static Instruction build(int ir){
+    public static Instruction build(int ir) {
         int opcode = NumberUtils.getSignedValueOf(ir, 0, Processor.OPCODE_SIZE - 1, 16);
 
         Specification specs = InstructionTable.getSpecification(opcode);
 
-        if(specs.getAddressingMode() == Processor.REGISTER_ADDRESSING_MODE){
+        if (specs.getAddressingMode() == Processor.REGISTER_ADDRESSING_MODE) {
             return registerInstructionBuilder(specs);
 
-        } else if(specs.getAddressingMode() == Processor.DIRECT_ADDRESSING_MODE){
+        } else if (specs.getAddressingMode() == Processor.DIRECT_ADDRESSING_MODE) {
             return directInstructionBuilder(specs);
-        } else if(specs.getAddressingMode() == Processor.RELATIVE_ADDRESSING_MODE){
+        } else if (specs.getAddressingMode() == Processor.RELATIVE_ADDRESSING_MODE) {
             return relativeInstructionBuilder(specs);
         } else {
             throw new UnsupportedOperationException();
@@ -31,7 +31,7 @@ public class InstructionBuilder {
 
     }
 
-    private static RegisterAddressingMode registerInstructionBuilder(Specification specs){
+    private static RegisterAddressingMode registerInstructionBuilder(Specification specs) {
         RegisterAddressingMode instruction = new RegisterAddressingMode();
 
         InstructionRegister ir = InstructionRegister.getInstance();
@@ -55,7 +55,7 @@ public class InstructionBuilder {
         return instruction;
     }
 
-    private static DirectAddressingMode directInstructionBuilder(Specification specs){
+    private static DirectAddressingMode directInstructionBuilder(Specification specs) {
         DirectAddressingMode instruction = new DirectAddressingMode();
 
         InstructionRegister ir = InstructionRegister.getInstance();
@@ -76,7 +76,7 @@ public class InstructionBuilder {
 
     }
 
-    private static RelativeAddressingMode relativeInstructionBuilder(Specification specs){
+    private static RelativeAddressingMode relativeInstructionBuilder(Specification specs) {
 
         RelativeAddressingMode instruction = new RelativeAddressingMode();
 
