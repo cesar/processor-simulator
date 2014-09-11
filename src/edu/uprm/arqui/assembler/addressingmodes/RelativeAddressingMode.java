@@ -1,5 +1,7 @@
 package edu.uprm.arqui.assembler.addressingmodes;
 
+import edu.uprm.arqui.util.NumberUtils;
+
 /**
  * Created by cesarcruz on 9/9/14.
  */
@@ -26,7 +28,7 @@ public class RelativeAddressingMode implements Instruction {
     private int operand;
 
     /**
-     * Get the mneumonic of the instruction
+     * Get the mnemonic of the instruction
      *
      * @return
      */
@@ -35,7 +37,7 @@ public class RelativeAddressingMode implements Instruction {
     }
 
     /**
-     * Set the mneumonic of the instruction
+     * Set the mnemonic of the instruction
      *
      * @param mnemonic
      */
@@ -44,7 +46,7 @@ public class RelativeAddressingMode implements Instruction {
     }
 
     /**
-     * Get the operand of the instrcuton
+     * Get the operand of the instruction
      *
      * @return
      */
@@ -52,6 +54,14 @@ public class RelativeAddressingMode implements Instruction {
         return operand;
     }
 
+    /**
+     * Get the LSB of operand of the instruction
+     *
+     * @return
+     */
+    public int getOperandLSB(){
+        return NumberUtils.getUnsignedValueOf(operand, 3, 10, 16);
+    }
     /**
      * Set the operand of the instruction
      *

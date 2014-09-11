@@ -44,7 +44,7 @@ public class DataMoveInstructions {
 	
 	public static void ldacc(){
 		RelativeAddressingMode instruction = (RelativeAddressingMode) Dissasembler.dissasembleInstruction();
-		byte data = (byte) instruction.getOperand();
+		byte data = (byte) instruction.getOperandLSB();
 	    registers.setRegister(data, 1);
 	}
 	
@@ -79,7 +79,7 @@ public class DataMoveInstructions {
 		byte data = memory.getByte(content);
 		registers.setRegister(data, raMode.getRegA());
 	}
-	
+
 	/**
 	 * Load Register operation: Rb <- mem[Ra]
 	 * Load a register Rb (destination) with the content of the memory where 
