@@ -177,7 +177,7 @@ public class Registers extends JPanel {
      * Update the values of the special registers fields.
      */
     public void updateSpecialRegisterValues() {
-        //ir.setText(NumberUtils.intToHexString(instructionRegister.getValue(), 4));
+        ir.setText(NumberUtils.intToHexString(instructionRegister.getValue(), 4));
         pc.setText(NumberUtils.intToHexString(programCounterRegister.getPc(), 3));
     }
 

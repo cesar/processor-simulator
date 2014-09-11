@@ -14,6 +14,11 @@ public class Processor {
     public static int MEMORY_CELL_SIZE = 8;
 
     public static int MEMORY_SIZE = 256;
+    
+    public static int IR_SIZE = 16;
+
+    
+    public static int PC_SIZE = 11;
 
     public static String DIRECT_ADDRESSING_MODE = "direct";
 
@@ -28,8 +33,6 @@ public class Processor {
     public static String CONTROL_PROGRAM_INSTRUCTION = "control";
 
     public static String DATA_MOVE_INSTRUCTION = "data_move";
-
-    public static int IR_SIZE = 16;
 
 
 }
