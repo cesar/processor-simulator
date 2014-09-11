@@ -14,7 +14,7 @@ import edu.uprm.arqui.util.NumberUtils;
 public class InstructionBuilder {
 
     public static Instruction build(int ir) {
-        int opcode = NumberUtils.getSignedValueOf(ir, 0, Processor.OPCODE_SIZE - 1, 16);
+        int opcode = NumberUtils.getUnsignedValueOf(ir, 0, Processor.OPCODE_SIZE - 1, Processor.IR_SIZE);
 
         Specification specs = InstructionTable.getSpecification(opcode);
 
@@ -36,11 +36,11 @@ public class InstructionBuilder {
 
         InstructionRegister ir = InstructionRegister.getInstance();
 
-        int regA = NumberUtils.getUnsignedValueOf(ir.getValue(), Processor.OPCODE_SIZE, Processor.OPCODE_SIZE + 2, 16);
+        int regA = NumberUtils.getUnsignedValueOf(ir.getValue(), Processor.OPCODE_SIZE, Processor.OPCODE_SIZE + 2, Processor.IR_SIZE);
 
-        int regB = NumberUtils.getUnsignedValueOf(ir.getValue(), Processor.OPCODE_SIZE + 3, Processor.OPCODE_SIZE + 5, 16);
+        int regB = NumberUtils.getUnsignedValueOf(ir.getValue(), Processor.OPCODE_SIZE + 3, Processor.OPCODE_SIZE + 5, Processor.IR_SIZE);
 
-        int regC = NumberUtils.getUnsignedValueOf(ir.getValue(), Processor.OPCODE_SIZE + 6, Processor.OPCODE_SIZE + 8, 16);
+        int regC = NumberUtils.getUnsignedValueOf(ir.getValue(), Processor.OPCODE_SIZE + 6, Processor.OPCODE_SIZE + 8, Processor.IR_SIZE);
 
         instruction.setRegA(regA);
 
@@ -60,9 +60,9 @@ public class InstructionBuilder {
 
         InstructionRegister ir = InstructionRegister.getInstance();
 
-        int regA = NumberUtils.getUnsignedValueOf(ir.getValue(), Processor.OPCODE_SIZE, Processor.OPCODE_SIZE + 2, 16);
+        int regA = NumberUtils.getUnsignedValueOf(ir.getValue(), Processor.OPCODE_SIZE, Processor.OPCODE_SIZE + 2, Processor.IR_SIZE);
 
-        int operand = NumberUtils.getUnsignedValueOf(ir.getValue(), Processor.OPCODE_SIZE + 3, 15, 16);
+        int operand = NumberUtils.getUnsignedValueOf(ir.getValue(), Processor.OPCODE_SIZE + 3, 15, Processor.IR_SIZE);
 
         instruction.setRegA(regA);
 
@@ -82,7 +82,7 @@ public class InstructionBuilder {
 
         InstructionRegister ir = InstructionRegister.getInstance();
 
-        int operand = NumberUtils.getUnsignedValueOf(ir.getValue(), Processor.OPCODE_SIZE, 15, 16);
+        int operand = NumberUtils.getUnsignedValueOf(ir.getValue(), Processor.OPCODE_SIZE, 15, Processor.IR_SIZE);
 
         instruction.setOperand(operand);
 

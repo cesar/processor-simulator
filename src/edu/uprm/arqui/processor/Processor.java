@@ -17,7 +17,6 @@ public class Processor {
     
     public static int IR_SIZE = 16;
 
-    
     public static int PC_SIZE = 11;
 
     public static String DIRECT_ADDRESSING_MODE = "direct";
