@@ -67,17 +67,17 @@ public class LogicInstructions {
 	//Estos los hago ya mismo...pq tengo clase ahora 
 	//Operation: R[ra]<= R[rb] shr R[rc]
 	
-	public static void SHR(){}
+	public static void shr(){}
 	
 	//Operation: R[ra]<= R[rb] shl R[rc]
 	
-	public static void SHL(){}
+	public static void shl(){}
 	
 	//Operation: R[ra]<= R[rb] rtr R[rc]
 	
-	public static void RTR(){}
+	public static void rtr(){}
 	
 	//Operation: R[ra]<= R[rb] rtl R[rc]
 	
-	public static void RTL(){}
+	public static void rtl(){}
 }
