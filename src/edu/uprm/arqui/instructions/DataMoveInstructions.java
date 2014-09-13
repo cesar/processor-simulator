@@ -24,43 +24,43 @@ public class DataMoveInstructions {
 	
 	//Operation: R[ra] <- [mem]
 	
-	public static void ld() {
-		DirectAddressingMode instruction = (DirectAddressingMode) Dissasembler.dissasembleInstruction();
-		byte data = memory.getByte(instruction.getOperand());
-	    int location = instruction.getRegA();
+	public static void ld(Instruction instruction) {
+		DirectAddressingMode daMode = (DirectAddressingMode) instruction;
+		byte data = memory.getByte(daMode.getOperand());
+	    int location = daMode.getRegA();
 	    registers.setRegister(data, location);
 	}
 	
 	//Operation: R[ra] <- cons
 	
-	public static void ldi(){
-		DirectAddressingMode instruction = (DirectAddressingMode) Dissasembler.dissasembleInstruction();
-		byte data = (byte) instruction.getOperand();
-	    int location = instruction.getRegA();
+	public static void ldi(Instruction instruction){
+		DirectAddressingMode daMode = (DirectAddressingMode) instruction;
+		byte data = (byte) daMode.getOperand();
+	    int location = daMode.getRegA();
 	    registers.setRegister(data, location);
 	}
 	
 	//Operation: R[1] <- cons
 	
-	public static void ldacc(){
-		RelativeAddressingMode instruction = (RelativeAddressingMode) Dissasembler.dissasembleInstruction();
-		byte data = (byte) instruction.getOperandLSB();
+	public static void ldacc(Instruction instruction){
+		RelativeAddressingMode reaMode = (RelativeAddressingMode) instruction;
+		byte data = (byte) reaMode.getOperandLSB();
 	    registers.setRegister(data, 1);
 	}
 	
 	//Operation: [mem] <- R[ra]
-	public static void st(){
-		DirectAddressingMode instruction = (DirectAddressingMode) Dissasembler.dissasembleInstruction();
-		byte data = registers.getRegister(instruction.getRegA()) ;
-	    int location = instruction.getOperand() ;
+	public static void st(Instruction instruction){
+		DirectAddressingMode daMode = (DirectAddressingMode) instruction;
+		byte data = registers.getRegister(daMode.getRegA()) ;
+	    int location = daMode.getOperand() ;
 		memory.setDataAt(location, data);
 	}
 	
 	//Operation: [mem] <- R[1]
-	public static void stacc(){
-		RelativeAddressingMode instruction = (RelativeAddressingMode) Dissasembler.dissasembleInstruction();
+	public static void stacc(Instruction instruction){
+		RelativeAddressingMode reaMode = (RelativeAddressingMode) Dissasembler.dissasembleInstruction();
 		byte data = (byte) registers.getRegister(1);
-		int value = instruction.getOperand();
+		int value = reaMode.getOperand();
 	    int location = NumberUtils.getUnsignedValueOf(value, 3, 10, 11);
 		memory.setDataAt(location, data);
 	}
