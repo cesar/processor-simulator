@@ -30,10 +30,10 @@ public class BitCondition {
 	
 	/**
 	 * Set the condition bit
-	 * 
+	 * n
 	 * @param value a boolean
 	 */
-	public void setBitCondtion(Boolean value) {
+	public void setBitCondition(Boolean value) {
 		bitCondition = value;
 	}
 	

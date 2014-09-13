@@ -2,6 +2,7 @@ package edu.uprm.arqui.instructions;
 
 import edu.uprm.arqui.assembler.addressingmodes.DirectAddressingMode;
 import edu.uprm.arqui.assembler.addressingmodes.Instruction;
+import edu.uprm.arqui.assembler.addressingmodes.RegisterAddressingMode;
 import edu.uprm.arqui.assembler.addressingmodes.RelativeAddressingMode;
 import edu.uprm.arqui.processor.Processor;
 import edu.uprm.arqui.register.BitCondition;
@@ -90,4 +91,62 @@ public class ControlProgramInstructions {
 			registers.setRegister((byte) (counter), daMode.getRegA());
 		}
 	}
+	
+	//Operation:Cond <- R[Ra] > R[Rb]
+	
+	public static void gr(Instruction instruction){
+		RegisterAddressingMode raMode = (RegisterAddressingMode) instruction;
+		byte Ra= registers.getRegister(raMode.getRegA());
+		byte Rb= registers.getRegister(raMode.getRegB());
+		if(Ra>Rb){
+			condition.setBitCondition(true);
+		}
+	}
+	
+	//Operation: Cond <- R[Ra] >= R[Rb]
+	
+	public static void gre(Instruction instruction){
+		RegisterAddressingMode raMode = (RegisterAddressingMode) instruction;
+		byte Ra= registers.getRegister(raMode.getRegA());
+		byte Rb= registers.getRegister(raMode.getRegB());
+		if(Ra>=Rb){
+			condition.setBitCondition(true);
+		}
+	}
+	
+	//Operation:Cond <- R[Ra] == R[Rb]
+	
+	public static void eq(Instruction instruction){
+		RegisterAddressingMode raMode = (RegisterAddressingMode) instruction;
+		byte Ra= registers.getRegister(raMode.getRegA());
+		byte Rb= registers.getRegister(raMode.getRegB());
+		if(Ra==Rb){
+			condition.setBitCondition(true);
+		}
+	}
+	
+	//Operation: Cond <- R[Ra] != R[Rb]
+	
+	public static void neq(Instruction instruction){
+		RegisterAddressingMode raMode = (RegisterAddressingMode) instruction;
+		byte Ra= registers.getRegister(raMode.getRegA());
+		byte Rb= registers.getRegister(raMode.getRegB());
+		if(Ra!=Rb){
+			condition.setBitCondition(true);
+		}
+	}
+	
+	//Operation:Do nothing
+	
+	public static void nop(Instruction instruction){
+	//en el msp430 para no dejarlo en blanco se realizaba una operacion donde hacia algo asi
+    //: ***mov R3,R3 ...no se si lo deba hacer aqui tambn.
+	}
+	
+	//Operation: Stop execution
+	
+	public static void stop(){}
+	
+	
+	
 }
