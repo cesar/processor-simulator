@@ -136,17 +136,22 @@ public class ControlProgramInstructions {
 		}
 	}
 	
-	//Operation:Do nothing
-	
-	public static void nop(Instruction instruction){
-	//en el msp430 para no dejarlo en blanco se realizaba una operacion donde hacia algo asi
-    //: ***mov R3,R3 ...no se si lo deba hacer aqui tambn.
+	/**
+	 * No Operation
+	 */
+	public static void nop(){
+		// Do nothing
 	}
 	
-	//Operation: Stop execution
-	
-	public static void stop(){}
-	
-	
+	/**
+	 * Stop Operation. It stops the processor	
+	 * 
+	 * @param processor the processor that needs to be stopped
+	 */
+	public static void stop(Processor processor){
+		if(processor.isRunning()) {
+			processor.setRun(false);
+		}
+	}
 	
 }

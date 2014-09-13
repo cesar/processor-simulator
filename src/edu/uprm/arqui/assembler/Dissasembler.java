@@ -8,13 +8,9 @@ import edu.uprm.arqui.register.InstructionRegister;
  */
 public class Dissasembler {
 
-	public static Instruction dissasembleInstruction() {
-
-		InstructionRegister ir = InstructionRegister.getInstance();
-
-		int irContents = ir.getValue();
-
-		Instruction instruction = InstructionBuilder.build(irContents);
+	public static Instruction dissasembleInstruction(int ir) {
+		
+		Instruction instruction = InstructionBuilder.build(ir);
 
 		return instruction;
     }

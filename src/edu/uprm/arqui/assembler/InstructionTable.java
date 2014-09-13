@@ -13,19 +13,19 @@ public class InstructionTable {
     public static Specification getSpecification(int opcode) {
         switch (opcode) {
             case 0:
-                return new Specification(Processor.DIRECT_ADDRESSING_MODE, "LD", Processor.DATA_MOVE_INSTRUCTION);
+                return new Specification(Processor.DIRECT_ADDRESSING_MODE, "ld", Processor.DATA_MOVE_INSTRUCTION);
 
             case 1:
-                return new Specification(Processor.DIRECT_ADDRESSING_MODE, "LDI", Processor.DATA_MOVE_INSTRUCTION);
+                return new Specification(Processor.DIRECT_ADDRESSING_MODE, "ldi", Processor.DATA_MOVE_INSTRUCTION);
 
             case 2:
-                return new Specification(Processor.RELATIVE_ADDRESSING_MODE, "LDACC", Processor.DATA_MOVE_INSTRUCTION);
+                return new Specification(Processor.RELATIVE_ADDRESSING_MODE, "ldacc", Processor.DATA_MOVE_INSTRUCTION);
 
             case 3:
-                return new Specification(Processor.DIRECT_ADDRESSING_MODE, "ST", Processor.DATA_MOVE_INSTRUCTION);
+                return new Specification(Processor.DIRECT_ADDRESSING_MODE, "st", Processor.DATA_MOVE_INSTRUCTION);
 
             case 4:
-                return new Specification(Processor.RELATIVE_ADDRESSING_MODE, "STACC", Processor.DATA_MOVE_INSTRUCTION);
+                return new Specification(Processor.RELATIVE_ADDRESSING_MODE, "stacc", Processor.DATA_MOVE_INSTRUCTION);
 
             case 5:
                 return new Specification(Processor.REGISTER_ADDRESSING_MODE, "ldr", Processor.DATA_MOVE_INSTRUCTION);
