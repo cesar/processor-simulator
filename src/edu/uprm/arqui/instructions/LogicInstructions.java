@@ -1,12 +1,9 @@
 package edu.uprm.arqui.instructions;
 
-import edu.uprm.arqui.assembler.Dissasembler;
 import edu.uprm.arqui.assembler.addressingmodes.Instruction;
 import edu.uprm.arqui.assembler.addressingmodes.RegisterAddressingMode;
 import edu.uprm.arqui.memory.Memory;
 import edu.uprm.arqui.register.MainRegisters;
-import sun.jvm.hotspot.asm.Register;
-
 /**
  * Created by cesarcruz on 9/3/14.
  */

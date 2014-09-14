@@ -12,6 +12,8 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 
+import edu.uprm.arqui.processor.Processor;
+
 public class MainGUIWindow extends JFrame implements ActionListener {
 
     private static final long serialVersionUID = 1L;
@@ -30,6 +32,8 @@ public class MainGUIWindow extends JFrame implements ActionListener {
     //private FileTable displayFile;
     private Registers registers;
     private IOPanel ioPanelPorts;
+    
+    private Processor processor;
 
     /**
      * Create and initialize a new RISC Microprocessor Simulator Windows
@@ -42,6 +46,8 @@ public class MainGUIWindow extends JFrame implements ActionListener {
      * Initialize the MainGUIWindow components
      */
     private void initializeGUI() {
+    	initializeProcessor();
+    	
         this.lowerCenterPanel = new JPanel();
         this.lowerLeftPanel = new JPanel();
         this.lowerRightPanel = new JPanel();
@@ -73,6 +79,13 @@ public class MainGUIWindow extends JFrame implements ActionListener {
 
         setFrame();
 
+    }
+    
+    /**
+     * Initialize the processor
+     */
+    private void initializeProcessor() {
+    	processor = new Processor();
     }
 
     /**
@@ -139,8 +152,21 @@ public class MainGUIWindow extends JFrame implements ActionListener {
                 // TODO: Implement logic for opening and reading the file. Update the fields
             }
         } else if (e.getSource() == run) {
-            // TODO: Implement logic for running the simulation
-
+        	if(processor.isRunning()) {
+        		//ioPanelPorts.getKeyboard();
+            	//ioPanelPorts.getParallelIn();
+                //memoryTable.updateMemory();
+        	} else {
+        		
+        	}
+        } else if(e.getSource() == step) {
+        	if(processor.isRunning()) {
+        		//ioPanelPorts.getKeyboard();
+            	//ioPanelPorts.getParallelIn();
+                //memoryTable.updateMemory();
+        	} else {
+        		
+        	}
         } else if (e.getSource() == exit) {
             int result = JOptionPane.showConfirmDialog(this,
                     "Are you sure you want to exit the application?",

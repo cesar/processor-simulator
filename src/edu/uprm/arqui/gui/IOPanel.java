@@ -98,7 +98,7 @@ public class IOPanel extends JPanel {
     public void getKeyboard() {
         String keyboardInput = keyboard.getText();
         if (keyboardInput.matches("[0-9A-Fa-f]{1,2}")) {
-            ports.setKeyboard(Byte.parseByte(keyboardInput));
+            ports.setKeyboard(Byte.parseByte(keyboardInput, 16));
         } else {
             JOptionPane.showMessageDialog(this, "Incorrect Keyboard Input Data.");
         }
@@ -124,7 +124,7 @@ public class IOPanel extends JPanel {
     public void getParallelIn() {
         String parallelInput = parallelIn.getText();
         if (parallelInput.matches("[0-9A-Fa-f]{1,2}")) {
-            ports.setParallelInput(Byte.parseByte(parallelInput));
+            ports.setParallelInput(Byte.parseByte(parallelInput, 16));
         } else {
             JOptionPane.showMessageDialog(this, "Incorrect Parallel Input Data.");
         }
