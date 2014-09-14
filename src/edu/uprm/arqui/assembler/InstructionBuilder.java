@@ -14,7 +14,9 @@ import edu.uprm.arqui.util.NumberUtils;
 public class InstructionBuilder {
 
     public static Instruction build(int ir) {
-        int opcode = NumberUtils.getUnsignedValueOf(ir, 0, Processor.OPCODE_SIZE - 1, Processor.IR_SIZE);
+        int opcode = (ir & 0x7C00) >>> 10;
+
+        System.out.println(opcode);
 
         Specification specs = InstructionTable.getSpecification(opcode);
 

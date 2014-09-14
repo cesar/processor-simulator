@@ -61,13 +61,12 @@ public class Memory {
     public int getData(int location, int cellsToFetch) {
         int data = 0;
         for (int i = 0; i < cellsToFetch; i++) {
-            data |= memory.get(location + i);
+            data |= NumberUtils.getUnsignedValueOf(memory.get(location + i),0, Processor.MEMORY_CELL_SIZE - 1, Processor.MEMORY_CELL_SIZE);
             if (i < cellsToFetch - 1) {
                 data = data << Processor.MEMORY_CELL_SIZE;
             }
         }
-        int bits = Processor.MEMORY_CELL_SIZE * cellsToFetch;
-        return NumberUtils.getUnsignedValueOf(data, 0, bits - 1, bits);
+        return data;
     }
 
     // TODO : Implementation of this method if we want add a chunk of data in multiple cells
