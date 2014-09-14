@@ -72,20 +72,15 @@ public class Processor {
     	ir = InstructionRegister.getInstance();
     	pc = ProgramCounterRegister.getInstance();
     	ports = new IOPorts();
-    	running = true;
+    	running = false;
     }
     
     public void step() {
     	fetch();
     	decodeAndExecute();
+
     }
-    
-    public void run() {
-    	while(running) {
-    		fetch();
-    		decodeAndExecute();
-    	}
-    }
+
     
     private void fetch() {
     	ir.getNextInstruction();

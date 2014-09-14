@@ -14,26 +14,6 @@ public class ProcessorSimulator {
 
     public static void main(String[] args) {
 
-        /**
-         * Initialize CPU and components
-         */
-        Processor cpu = new Processor();
-
-        /**
-         * Load program contents into memory
-         */
-        File file = new File("/Users/cesarcruz/Documents/IdeaProjects/ProSimR/src/edu/uprm/arqui/processor/data.txt");
-
-        /**
-         * Create instance of FileLoader class
-         */
-        FileLoader loader = FileLoader.getInstance();
-
-        /**
-         * Load file contents into memory
-         */
-        loader.loadFile(file);
-
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
@@ -41,6 +21,7 @@ public class ProcessorSimulator {
                 mainGUI.setVisible(true);
             }
         });
+
 
     }
 }

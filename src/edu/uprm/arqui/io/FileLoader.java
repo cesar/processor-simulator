@@ -153,20 +153,17 @@ public class FileLoader {
 
             fileValid = hasStopInstruction && !containsErrors;
 
-            if (bufferedFile != null) {
-
                 try {
 
                     bufferedFile.close();
+
+                    bufferedFile = null;
 
                 } catch (IOException e) {
 
                     e.printStackTrace();
 
                 }
-
-            }
-
         }
 
     }

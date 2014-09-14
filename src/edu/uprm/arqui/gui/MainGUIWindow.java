@@ -3,6 +3,7 @@ package edu.uprm.arqui.gui;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -12,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 
+import edu.uprm.arqui.io.FileLoader;
 import edu.uprm.arqui.processor.Processor;
 
 public class MainGUIWindow extends JFrame implements ActionListener {
@@ -32,7 +34,7 @@ public class MainGUIWindow extends JFrame implements ActionListener {
     //private FileTable displayFile;
     private Registers registers;
     private IOPanel ioPanelPorts;
-    
+
     private Processor processor;
 
     /**
@@ -46,8 +48,11 @@ public class MainGUIWindow extends JFrame implements ActionListener {
      * Initialize the MainGUIWindow components
      */
     private void initializeGUI() {
-    	initializeProcessor();
-    	
+
+        initializeProcessor();
+
+        loadFile();
+
         this.lowerCenterPanel = new JPanel();
         this.lowerLeftPanel = new JPanel();
         this.lowerRightPanel = new JPanel();
@@ -80,12 +85,24 @@ public class MainGUIWindow extends JFrame implements ActionListener {
         setFrame();
 
     }
-    
+
     /**
      * Initialize the processor
      */
     private void initializeProcessor() {
-    	processor = new Processor();
+        processor = new Processor();
+    }
+
+    /**
+     * Load program sequence into memory
+     */
+    private void loadFile() {
+
+        File file = new File("/Users/cesarcruz/Documents/IdeaProjects/ProSimR/src/edu/uprm/arqui/processor/program_sequence.txt");
+
+        FileLoader loader = FileLoader.getInstance();
+
+        loader.loadFile(file);
     }
 
     /**
@@ -141,21 +158,40 @@ public class MainGUIWindow extends JFrame implements ActionListener {
                 // TODO: Implement logic for opening and reading the file. Update the fields
             }
         } else if (e.getSource() == run) {
-        	if(processor.isRunning()) {
-        		//ioPanelPorts.getKeyboard();
-            	//ioPanelPorts.getParallelIn();
-                //memoryTable.updateMemory();
-        	} else {
-        		
-        	}
-        } else if(e.getSource() == step) {
-        	if(processor.isRunning()) {
-        		ioPanelPorts.getKeyboard();
-            	ioPanelPorts.getParallelIn();
-                processor.step();
-        	} else {
-        		
-        	}
+                ioPanelPorts.getKeyboard();
+
+                ioPanelPorts.getParallelIn();
+
+                processor.setRun(true);
+
+                while(processor.isRunning()){
+
+                    processor.step();
+
+                    memoryTable.updateMemory();
+
+                    registers.updateGeneralPurposeRegisterValues();
+
+                    registers.updateSpecialRegisterValues();
+
+                }
+
+
+
+        } else if (e.getSource() == step) {
+
+            ioPanelPorts.getKeyboard();
+
+            ioPanelPorts.getParallelIn();
+
+            processor.step();
+
+            memoryTable.updateMemory();
+
+            registers.updateGeneralPurposeRegisterValues();
+
+            registers.updateSpecialRegisterValues();
+
         } else if (e.getSource() == exit) {
             int result = JOptionPane.showConfirmDialog(this,
                     "Are you sure you want to exit the application?",
