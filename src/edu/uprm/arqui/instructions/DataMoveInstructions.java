@@ -58,7 +58,7 @@ public class DataMoveInstructions {
 	
 	//Operation: [mem] <- R[1]
 	public static void stacc(Instruction instruction){
-		RelativeAddressingMode reaMode = (RelativeAddressingMode) Dissasembler.dissasembleInstruction();
+		RelativeAddressingMode reaMode = (RelativeAddressingMode) instruction;
 		byte data = (byte) registers.getRegister(1);
 		int value = reaMode.getOperand();
 	    int location = NumberUtils.getUnsignedValueOf(value, 3, 10, 11);
