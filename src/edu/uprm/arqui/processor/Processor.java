@@ -74,6 +74,12 @@ public class Processor {
     	ports = new IOPorts();
     	running = false;
     }
+
+    public void run() {
+        while(isRunning()){
+            step();
+        }
+    }
     
     public void step() {
     	fetch();

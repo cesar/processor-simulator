@@ -3,6 +3,7 @@ package edu.uprm.arqui.gui;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
 import java.io.File;
 
 import javax.swing.JButton;
@@ -153,9 +154,20 @@ public class MainGUIWindow extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == loadFile) {
+
             fc.showOpenDialog(this);
-            if (fc.getSelectedFile() != null) {
-                // TODO: Implement logic for opening and reading the file. Update the fields
+
+            File file = fc.getSelectedFile();
+
+            if (file != null) {
+
+                FileLoader loader = FileLoader.getInstance();
+
+                loader.loadFile(file);
+
+                memoryTable.updateMemory();
+            } else {
+                JOptionPane.showMessageDialog(null, "alert", "alert", JOptionPane.ERROR_MESSAGE);
             }
         } else if (e.getSource() == run) {
                 ioPanelPorts.getKeyboard();
@@ -164,18 +176,13 @@ public class MainGUIWindow extends JFrame implements ActionListener {
 
                 processor.setRun(true);
 
-                while(processor.isRunning()){
+                processor.run();
 
-                    processor.step();
+                memoryTable.updateMemory();
 
-                    memoryTable.updateMemory();
+                registers.updateGeneralPurposeRegisterValues();
 
-                    registers.updateGeneralPurposeRegisterValues();
-
-                    registers.updateSpecialRegisterValues();
-
-                }
-
+                registers.updateSpecialRegisterValues();
 
 
         } else if (e.getSource() == step) {
