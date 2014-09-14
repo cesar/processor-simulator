@@ -9,6 +9,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import edu.uprm.arqui.io.FileLoader;
 import edu.uprm.arqui.memory.Memory;
 import edu.uprm.arqui.util.NumberUtils;
 
@@ -46,7 +47,14 @@ public class MemoryTable extends JPanel {
 
         memoryLabel = new JLabel("Memory");
         createColumns();
-        createData();
+
+        FileLoader loader = FileLoader.getInstance();
+
+        if(loader.fileLoaded){
+            updateMemory();
+        } else{
+            createData();
+        }
 
         model = new DefaultTableModel(data, columnNames) {
             private static final long serialVersionUID = 1L;
@@ -63,6 +71,8 @@ public class MemoryTable extends JPanel {
         add(scrollPane);
 
         memory = Memory.getInstance();
+
+        updateMemory();
 
     }
 

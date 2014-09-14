@@ -150,9 +150,9 @@ public class MainGUIWindow extends JFrame implements ActionListener {
         	}
         } else if(e.getSource() == step) {
         	if(processor.isRunning()) {
-        		//ioPanelPorts.getKeyboard();
-            	//ioPanelPorts.getParallelIn();
-                //memoryTable.updateMemory();
+        		ioPanelPorts.getKeyboard();
+            	ioPanelPorts.getParallelIn();
+                processor.step();
         	} else {
         		
         	}

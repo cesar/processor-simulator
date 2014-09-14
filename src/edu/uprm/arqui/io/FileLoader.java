@@ -5,84 +5,107 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.net.SocketPermission;
 
 
 import edu.uprm.arqui.memory.Memory;
-import edu.uprm.arqui.processor.Instruction;
 import edu.uprm.arqui.processor.Processor;
 
 
 public class FileLoader {
 
-	private boolean fileValid;
-	private boolean fileLoaded;
-	private boolean fileTooLong;
-	private BufferedReader bufferedFile;
-	private static Memory memory = Memory.getInstance();
+    private static Memory memory = null;
+    private static FileLoader instance;
+    public boolean fileValid;
+    public boolean fileLoaded;
+    public boolean fileTooLong;
+    private BufferedReader bufferedFile;
 
-	/**
-	 * Instantiates a new File loader.
-	 * @param file The file to be read
-	 */
-	public FileLoader(File file) {
-		if (file.isFile()) {
-			try {
-				this.bufferedFile = new BufferedReader(new FileReader(file));
-			} catch (FileNotFoundException e) {
-				this.fileLoaded = false;
-				return;
-			}
-			this.fileLoaded = true;
-			loadInstruction();
-		} else {
-			this.fileLoaded = false;
-		}
-	}
+    /**
+     * Instantiates a new File loader.
+     */
+    private FileLoader() {
+        this.fileValid = false;
+        this.fileLoaded = false;
+        this.fileTooLong = false;
+        this.bufferedFile = null;
+        memory = Memory.getInstance();
+    }
 
-	/**
-	 * Getter for memory
-	 */
-	public static Memory getMemory() {
-		return memory;
-	}
+    /**
+     * Lazy instantiation for FileLoader
+     *
+     * @return Instance of FileLoader class
+     */
+    public static FileLoader getInstance() {
+        if (instance == null) {
+            return new FileLoader();
+        }
+        return instance;
+    }
 
-	public static void setMemory(Memory memory) {
-		FileLoader.memory = memory;
-	}
+    /**
+     * Getter for memory
+     */
+    public static Memory getMemory() {
+        return memory;
+    }
 
-	public boolean isFileValid(){
-		return fileValid;
-	}
-	public boolean isFileLoaded() {
-		return fileLoaded;
-	}
+    public static void setMemory(Memory memory) {
+        FileLoader.memory = memory;
+    }
 
-	public boolean isFileTooLong() {
-		return fileTooLong;
-	}
+    public void loadFile(File file) {
+        if (file.isFile()) {
+            try {
+                this.bufferedFile = new BufferedReader(new FileReader(file));
+            } catch (FileNotFoundException e) {
+                this.fileLoaded = false;
+                return;
+            }
+            this.fileLoaded = true;
+            loadInstruction();
+        } else {
+            this.fileLoaded = false;
+        }
+    }
+
+    public boolean isFileValid() {
+        return this.fileValid;
+    }
+
+    public boolean isFileLoaded() {
+        return this.fileLoaded;
+    }
+
+    public boolean isFileTooLong() {
+        return this.fileTooLong;
+    }
 
 
-	/**
-	 * Loads instructions in memory at even addresses in big endian format.
-	 */
-	private void loadInstruction(){
-		boolean containsErrors = false;
+    /**
+     * Loads instructions in memory at even addresses in big endian format.
+     */
+    private void loadInstruction() {
+        boolean containsErrors = false;
 
-		boolean hasStopInstruction = false;
+        boolean hasStopInstruction = false;
 
-		try {
+        try {
 
-			int count = 0;
+            int count = 0;
 
-			String instructionString;
+            String instructionString;
 
-			boolean instructionValid;
+            boolean instructionValid;
 
-			while ((instructionString = bufferedFile.readLine()) != null) {
+            while ((instructionString = bufferedFile.readLine()) != null) {
+
+                instructionString = instructionString.trim();
 
                 instructionValid = instructionString.matches("[0-9A-Fa-f]{4}");//instruction is hex and 4 characters
 
-                if (instructionValid && count < Processor.MEMORY_SIZE) {
+                if (instructionValid && count <= Processor.MEMORY_SIZE) {
 
                     String byte1 = instructionString.substring(0, 2);//load memory in bytes
 
@@ -94,58 +117,59 @@ public class FileLoader {
 
                     memory.setDataAt(count, (byte) data1);
 
-                    count = count + 0x02;
+                    count++;
 
                     memory.setDataAt(count, (byte) data2);
 
-                    if (count == 0xFE) {//last even memory location
+                    if (count == 256) {//last even memory location
 
                         break;
 
                     }
-                    count = count + 0x02;
+                    count++;
 
-                    if (!instructionValid && count < Processor.MEMORY_SIZE) {
+                    continue;
+                }
+                if (!instructionValid && count <= Processor.MEMORY_SIZE) {
 
-                        containsErrors = true;
+                    containsErrors = true;
 
-                    } else {
+                } else {
 
-                        fileTooLong = true;
+                    fileTooLong = true;
 
-                        System.err.println("File too long, ignoring instructions after the th line.");
+                    System.err.println("File too long, ignoring instructions after the th line.");
 
-                        break;
-
-                    }
+                    break;
 
                 }
+
             }
 
-		} catch (IOException e) {
+        } catch (IOException e) {
 
-			e.printStackTrace();
+            e.printStackTrace();
 
-		} finally {
+        } finally {
 
-			fileValid = hasStopInstruction && !containsErrors;
+            fileValid = hasStopInstruction && !containsErrors;
 
-			if (bufferedFile != null) {
+            if (bufferedFile != null) {
 
-				try {
+                try {
 
-					bufferedFile.close();
+                    bufferedFile.close();
 
-				} catch (IOException e) {
+                } catch (IOException e) {
 
-					e.printStackTrace();
+                    e.printStackTrace();
 
-				}
+                }
 
-			}
+            }
 
-		}
+        }
 
-	}
-	
+    }
+
 }
