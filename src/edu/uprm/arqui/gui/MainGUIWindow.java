@@ -32,7 +32,6 @@ public class MainGUIWindow extends JFrame implements ActionListener {
     private JFileChooser fc;
 
     private MemoryTable memoryTable;
-    //private FileTable displayFile;
     private Registers registers;
     private IOPanel ioPanelPorts;
 
@@ -80,6 +79,9 @@ public class MainGUIWindow extends JFrame implements ActionListener {
         this.run.addActionListener(this);
         this.step.addActionListener(this);
         this.exit.addActionListener(this);
+        
+        run.setEnabled(false);
+        step.setEnabled(false);
 
         setFrame();
 
@@ -150,32 +152,45 @@ public class MainGUIWindow extends JFrame implements ActionListener {
                 FileLoader loader = FileLoader.getInstance();
 
                 loader.loadFile(file);
-
-                memoryTable.updateMemory();
+                
+                if(loader.isFileLoaded()) {
+                	
+                	memoryTable.updateMemory();
+                    
+                    ioPanelPorts.updatePorts();
+                    
+                    run.setEnabled(true);
+                    
+                    step.setEnabled(true);
+                    
+                } else {
+                	JOptionPane.showMessageDialog(this, "File did not load");
+                }
+                
             } else {
                 JOptionPane.showMessageDialog(null, "alert", "alert", JOptionPane.ERROR_MESSAGE);
             }
         } else if (e.getSource() == run) {
-                ioPanelPorts.getKeyboard();
+        
+        	ioPanelPorts.getKeyboard();
 
-                ioPanelPorts.getParallelIn();
+        	ioPanelPorts.getParallelIn();
 
-                processor.setRun(true);
+            processor.setRun(true);
 
-                processor.run();
+            processor.run();
 
-                memoryTable.updateMemory();
+            memoryTable.updateMemory();
 
-                registers.updateGeneralPurposeRegisterValues();
+            registers.updateGeneralPurposeRegisterValues();
 
-                registers.updateSpecialRegisterValues();
+            registers.updateSpecialRegisterValues();
 
-                ioPanelPorts.updatePorts();
-
+            ioPanelPorts.updatePorts();
 
         } else if (e.getSource() == step) {
 
-            ioPanelPorts.getKeyboard();
+        	ioPanelPorts.getKeyboard();
 
             ioPanelPorts.getParallelIn();
 
@@ -186,6 +201,8 @@ public class MainGUIWindow extends JFrame implements ActionListener {
             registers.updateGeneralPurposeRegisterValues();
 
             registers.updateSpecialRegisterValues();
+            
+            ioPanelPorts.updatePorts();
 
         } else if (e.getSource() == exit) {
             int result = JOptionPane.showConfirmDialog(this,
