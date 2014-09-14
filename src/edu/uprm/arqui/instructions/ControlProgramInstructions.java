@@ -101,6 +101,9 @@ public class ControlProgramInstructions {
 		if(Ra>Rb){
 			condition.setBitCondition(true);
 		}
+		else{
+			condition.setBitCondition(false);
+		}
 	}
 	
 	//Operation: Cond <- R[Ra] >= R[Rb]
@@ -111,6 +114,9 @@ public class ControlProgramInstructions {
 		byte Rb= registers.getRegister(raMode.getRegB());
 		if(Ra>=Rb){
 			condition.setBitCondition(true);
+		}
+		else{
+			condition.setBitCondition(false);
 		}
 	}
 	
@@ -123,6 +129,9 @@ public class ControlProgramInstructions {
 		if(Ra==Rb){
 			condition.setBitCondition(true);
 		}
+		else{
+			condition.setBitCondition(false);
+		}
 	}
 	
 	//Operation: Cond <- R[Ra] != R[Rb]
@@ -133,6 +142,9 @@ public class ControlProgramInstructions {
 		byte Rb= registers.getRegister(raMode.getRegB());
 		if(Ra!=Rb){
 			condition.setBitCondition(true);
+		}
+		else{
+			condition.setBitCondition(false);
 		}
 	}
 	
