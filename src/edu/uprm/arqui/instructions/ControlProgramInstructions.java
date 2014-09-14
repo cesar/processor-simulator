@@ -20,16 +20,16 @@ public class ControlProgramInstructions {
 	private static BitCondition condition = BitCondition.getInstance();
 	
 	/**
-	 * Jump Register Operation using Direct Addressing Mode: pc <- Ra
+	 * Jump Register Operation using Register Addressing Mode: pc <- Ra
 	 * The program counter is now set with the content of register Ra
 	 * 
 	 * @param instruction the instruction object
 	 */
 	public static void jmpr(Instruction instruction) {
-		DirectAddressingMode daMode = (DirectAddressingMode) instruction;
-		int value = registers.getRegister(daMode.getRegA());
+		RegisterAddressingMode raModeMode = (RegisterAddressingMode) instruction;
+		int value = registers.getRegister(raModeMode.getRegA());
 		int content = NumberUtils.getUnsignedValueOf(value, 0, Processor.GENERAL_REGISTER_SIZE - 1, Processor.GENERAL_REGISTER_SIZE);
-		pc.setPc(content);	
+		pc.setPc(content);
 	}
 	
 	/**
