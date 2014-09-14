@@ -133,17 +133,6 @@ public class MainGUIWindow extends JFrame implements ActionListener {
         this.lowerRightPanel.add(exit);
     }
 
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                MainGUIWindow mainGUI = new MainGUIWindow();
-                mainGUI.setVisible(true);
-            }
-        });
-    }
-
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == loadFile) {

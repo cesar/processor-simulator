@@ -5,7 +5,8 @@ import junit.framework.TestCase;
 public class LogicInstructionsTest extends TestCase {
 
 
-    public void testSHR(){
+    public void testAND(){
+
     }
 
 }

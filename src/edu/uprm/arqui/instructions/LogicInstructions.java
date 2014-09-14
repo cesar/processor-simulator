@@ -11,7 +11,6 @@ public class LogicInstructions {
 	
 	private static Memory memory = null;
 	private static MainRegisters registers = null;
-	//Operation: R[ra]<= R[rb]*R[rc]
 
 
     /**
