@@ -52,7 +52,7 @@ public class MainGUIWindow extends JFrame implements ActionListener {
 
         initializeProcessor();
 
-        loadFile();
+        //loadFile();
 
         this.lowerCenterPanel = new JPanel();
         this.lowerLeftPanel = new JPanel();
@@ -94,17 +94,17 @@ public class MainGUIWindow extends JFrame implements ActionListener {
         processor = new Processor();
     }
 
-    /**
-     * Load program sequence into memory
-     */
-    private void loadFile() {
-
-        File file = new File("/Users/cesarcruz/Documents/IdeaProjects/ProSimR/src/edu/uprm/arqui/processor/program_sequence.txt");
-
-        FileLoader loader = FileLoader.getInstance();
-
-        loader.loadFile(file);
-    }
+//    /**
+//     * Load program sequence into memory
+//     */
+//    private void loadFile() {
+//
+//        File file = new File("/Users/cesarcruz/Documents/IdeaProjects/ProSimR/src/edu/uprm/arqui/processor/program_sequence.txt");
+//
+//        FileLoader loader = FileLoader.getInstance();
+//
+//        loader.loadFile(file);
+//    }
 
     /**
      * Set MainGUI window size, title, location and parameters.
