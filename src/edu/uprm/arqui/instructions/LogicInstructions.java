@@ -167,6 +167,7 @@ public class LogicInstructions {
 
         int rc = registers.getRegister(inst.getRegC());
 
+        //MAGIC
         byte ra = (byte) ((rb << rc) | (rb >>> (Integer.SIZE - rc)));
 
         registers.setRegister(ra, inst.getRegA());
