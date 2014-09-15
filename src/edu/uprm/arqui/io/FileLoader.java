@@ -88,8 +88,6 @@ public class FileLoader {
     private void loadInstruction() {
         boolean containsErrors = false;
 
-        boolean hasStopInstruction = false;
-
         try {
 
             int count = 0;
@@ -151,7 +149,7 @@ public class FileLoader {
 
         } finally {
 
-            fileValid = hasStopInstruction && !containsErrors;
+            fileValid = !containsErrors;
 
             try {
 

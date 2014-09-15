@@ -153,7 +153,7 @@ public class MainGUIWindow extends JFrame implements ActionListener {
 
                 loader.loadFile(file);
                 
-                if(loader.isFileLoaded()) {
+                if(loader.isFileValid()) {
                 	
                 	memoryTable.updateMemory();
                     
@@ -164,7 +164,7 @@ public class MainGUIWindow extends JFrame implements ActionListener {
                     step.setEnabled(true);
                     
                 } else {
-                	JOptionPane.showMessageDialog(this, "File did not load");
+                	JOptionPane.showMessageDialog(this, "File is not valid.");
                 }
                 
             } else {
@@ -187,6 +187,8 @@ public class MainGUIWindow extends JFrame implements ActionListener {
             registers.updateSpecialRegisterValues();
 
             ioPanelPorts.updatePorts();
+            
+            JOptionPane.showMessageDialog(this, "Simulation finished.");
 
         } else if (e.getSource() == step) {
 
