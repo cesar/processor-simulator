@@ -15,9 +15,9 @@ public class FileLoader {
 
     private static Memory memory = null;
     private static FileLoader instance;
-    public boolean fileValid;
-    public boolean fileLoaded;
-    public boolean fileTooLong;
+    private boolean fileValid;
+    private boolean fileLoaded;
+    private boolean fileTooLong;
     private BufferedReader bufferedFile;
 
     /**
@@ -153,17 +153,17 @@ public class FileLoader {
 
             fileValid = hasStopInstruction && !containsErrors;
 
-                try {
+            try {
 
-                    bufferedFile.close();
+            	bufferedFile.close();
 
-                    bufferedFile = null;
+            	bufferedFile = null;
 
-                } catch (IOException e) {
+            } catch (IOException e) {
 
-                    e.printStackTrace();
+            	e.printStackTrace();
 
-                }
+            }
         }
 
     }

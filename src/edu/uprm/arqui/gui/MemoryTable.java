@@ -50,7 +50,7 @@ public class MemoryTable extends JPanel {
 
         FileLoader loader = FileLoader.getInstance();
 
-        if(loader.fileLoaded){
+        if(loader.isFileLoaded()){
             updateMemory();
         } else{
             createData();

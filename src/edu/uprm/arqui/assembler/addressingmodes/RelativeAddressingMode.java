@@ -60,7 +60,7 @@ public class RelativeAddressingMode implements Instruction {
      * @return
      */
     public int getOperandLSB(){
-        return NumberUtils.getUnsignedValueOf(operand, 3, 10, 16);
+        return NumberUtils.getUnsignedValueOf(operand, 3, 10, 11);
     }
     /**
      * Set the operand of the instruction
