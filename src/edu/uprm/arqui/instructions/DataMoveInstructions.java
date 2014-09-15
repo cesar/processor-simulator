@@ -14,7 +14,6 @@ import edu.uprm.arqui.assembler.addressingmodes.Instruction;
 /**
  * This class implements all the functions related to data move 
  * from the instruction set
- * <p>
  * Created by cesarcruz on 9/3/14.
  */
 public class DataMoveInstructions {
