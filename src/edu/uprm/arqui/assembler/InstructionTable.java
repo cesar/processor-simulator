@@ -79,7 +79,7 @@ public class InstructionTable {
                 return new Specification(Processor.RELATIVE_ADDRESSING_MODE, "jmpa", Processor.CONTROL_PROGRAM_INSTRUCTION);
 
             case 22:
-                return new Specification(Processor.RELATIVE_ADDRESSING_MODE, "jcr", Processor.CONTROL_PROGRAM_INSTRUCTION);
+                return new Specification(Processor.DIRECT_ADDRESSING_MODE, "jcr", Processor.CONTROL_PROGRAM_INSTRUCTION);
 
             case 23:
                 return new Specification(Processor.RELATIVE_ADDRESSING_MODE, "jca", Processor.CONTROL_PROGRAM_INSTRUCTION);

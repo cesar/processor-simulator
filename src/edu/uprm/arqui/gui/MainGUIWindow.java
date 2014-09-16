@@ -138,6 +138,27 @@ public class MainGUIWindow extends JFrame implements ActionListener {
 
         this.lowerRightPanel.add(exit);
     }
+    
+    /**
+     * Get main registers field data
+     */
+    private void getMainRegistersData() {
+    	 registers.getR0();
+         
+         registers.getR1();
+         
+         registers.getR2();
+         
+         registers.getR3();
+         
+         registers.getR4();
+         
+         registers.getR5();
+         
+         registers.getR6();
+         
+         registers.getR7();
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -195,6 +216,10 @@ public class MainGUIWindow extends JFrame implements ActionListener {
         	ioPanelPorts.getKeyboard();
 
             ioPanelPorts.getParallelIn();
+            
+            registers.getProgramCounterText(); 
+            
+            getMainRegistersData();
 
             processor.step();
 

@@ -18,9 +18,11 @@ public class InstructionBuilder {
 
         Specification specs = InstructionTable.getSpecification(opcode);
 
-        if (specs.getAddressingMode() == Processor.REGISTER_ADDRESSING_MODE) {
+        if(specs == null) {
+        	throw new NullPointerException("Did not find the specified opcode");
+        }
+        else if (specs.getAddressingMode() == Processor.REGISTER_ADDRESSING_MODE) {
             return registerInstructionBuilder(specs);
-
         } else if (specs.getAddressingMode() == Processor.DIRECT_ADDRESSING_MODE) {
             return directInstructionBuilder(specs);
         } else if (specs.getAddressingMode() == Processor.RELATIVE_ADDRESSING_MODE) {

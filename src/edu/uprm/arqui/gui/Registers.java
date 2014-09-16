@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -63,7 +64,6 @@ public class Registers extends JPanel {
         programCounterRegister = ProgramCounterRegister.getInstance();
         pcLabel = new JLabel("PC");
         pc = new JTextField(4);
-        pc.setEditable(false);
         pc.setBackground(backgroundColor);
         add(pcLabel);
         add(pc);
@@ -72,7 +72,6 @@ public class Registers extends JPanel {
         for (int i = 0; i < Processor.NUMBER_GPR; i++) {
             registersLabels[i] = new JLabel("R" + i);
             registers[i] = new JTextField(4);
-            registers[i].setEditable(false);
             registers[i].setBackground(backgroundColor);
             add(registersLabels[i]);
             add(registers[i]);
@@ -82,97 +81,116 @@ public class Registers extends JPanel {
         updateGeneralPurposeRegisterValues();
 
     }
-
+    
+    
     /**
-     * Set the value of the IR field
-     *
-     * @param value the new value
+     * Get the input from the pc field and set it to the program counter object
      */
-    public void setIR(String value) {
-        ir.setText(value);
+    public void getProgramCounterText() {
+        String pcString = pc.getText();
+        if (pcString.matches("[0-9A-Fa-f]{3}")) {
+            programCounterRegister.setPc(NumberUtils.getSignedValueOf(Integer.parseInt(pcString, 16), 3, Processor.PC_SIZE - 1, Processor.PC_SIZE));
+        } else {
+            JOptionPane.showMessageDialog(this, "Incorrect Input Data.");
+        }
     }
 
     /**
-     * Set the value of the PC field
-     *
-     * @param value the new value
+     * Get the input from the R0 field and set it to the R0 main registers object
      */
-    public void setPC(String value) {
-        pc.setText(value);
+    public void getR0() {
+        String r0 = registers[0].getText();
+        if (r0.matches("[0-9A-Fa-f]{2}")) {
+            mainRegisters.setRegister((byte)Integer.parseInt(r0, 16), 0);
+        } else {
+            JOptionPane.showMessageDialog(this, "Incorrect Input Data.");
+        }
     }
-
+    
     /**
-     * Set the value of register R0 field.
-     *
-     * @param data The new value of register R0.
+     * Get the input from the R1 field and set it to the R1 main registers object
      */
-    public void setR0(String data) {
-        this.registers[0].setText(data);
+    public void getR1() {
+        String r1 = registers[1].getText();
+        if (r1.matches("[0-9A-Fa-f]{2}")) {
+        	 mainRegisters.setRegister((byte)Integer.parseInt(r1, 16), 1);
+        } else {
+            JOptionPane.showMessageDialog(this, "Incorrect Input Data.");
+        }
     }
-
+    
     /**
-     * Set the value of register R1 field.
-     *
-     * @param data The new value of register R1.
+     * Get the input from the R2 field and set it to the R2 main registers object
      */
-    public void setR1(String data) {
-        this.registers[1].setText(data);
+    public void getR2() {
+        String r2 = registers[2].getText();
+        if (r2.matches("[0-9A-Fa-f]{2}")) {
+        	 mainRegisters.setRegister((byte)Integer.parseInt(r2, 16), 2);
+        } else {
+            JOptionPane.showMessageDialog(this, "Incorrect Input Data.");
+        }
     }
-
+    
     /**
-     * Set the value of register R2 field.
-     *
-     * @param data The new value of register R2.
+     * Get the input from the R3 field and set it to the R3 main registers object
      */
-    public void setR2(String data) {
-        this.registers[2].setText(data);
+    public void getR3() {
+        String r3 = registers[3].getText();
+        if (r3.matches("[0-9A-Fa-f]{2}")) {
+        	 mainRegisters.setRegister((byte)Integer.parseInt(r3, 16), 3);
+        } else {
+            JOptionPane.showMessageDialog(this, "Incorrect Input Data.");
+        }
     }
-
+    
     /**
-     * Set the value of register R3 field.
-     *
-     * @param data The new value of register R3.
+     * Get the input from the R4 field and set it to the R4 main registers object
      */
-    public void setR3(String data) {
-        this.registers[3].setText(data);
+    public void getR4() {
+        String r4 = registers[4].getText();
+        if (r4.matches("[0-9A-Fa-f]{2}")) {
+        	 mainRegisters.setRegister((byte)Integer.parseInt(r4, 16), 4);
+        } else {
+            JOptionPane.showMessageDialog(this, "Incorrect Input Data.");
+        }
     }
-
+    
     /**
-     * Set the value of register R4 field.
-     *
-     * @param data The new value of register R4.
+     * Get the input from the R5 field and set it to the R5 main registers object
      */
-    public void setR4(String data) {
-        this.registers[4].setText(data);
+    public void getR5() {
+        String r5 = registers[5].getText();
+        if (r5.matches("[0-9A-Fa-f]{2}")) {
+        	 mainRegisters.setRegister((byte)Integer.parseInt(r5, 16), 5);
+        } else {
+            JOptionPane.showMessageDialog(this, "Incorrect Input Data.");
+        }
     }
-
+    
     /**
-     * Set the value of register R5 field.
-     *
-     * @param data The new value of register R5.
+     * Get the input from the R6 field and set it to the R6 main registers object
      */
-    public void setR5(String data) {
-        this.registers[5].setText(data);
+    public void getR6() {
+        String r6 = registers[6].getText();
+        if (r6.matches("[0-9A-Fa-f]{2}")) {
+        	 mainRegisters.setRegister((byte)Integer.parseInt(r6, 16), 6);
+        } else {
+            JOptionPane.showMessageDialog(this, "Incorrect Input Data.");
+        }
     }
-
+    
     /**
-     * Set the value of register R6 field.
-     *
-     * @param data The new value of register R6.
+     * Get the input from the R7 field and set it to the R7 main registers object
      */
-    public void setR6(String data) {
-        this.registers[6].setText(data);
+    public void getR7() {
+        String r7 = registers[7].getText();
+        if (r7.matches("[0-9A-Fa-f]{2}")) {
+        	 mainRegisters.setRegister((byte)Integer.parseInt(r7, 16), 7);
+        } else {
+            JOptionPane.showMessageDialog(this, "Incorrect Input Data.");
+        }
     }
-
-    /**
-     * Set the value of register R7 field.
-     *
-     * @param data The new value of register R7.
-     */
-    public void setR7(String data) {
-        this.registers[7].setText(data);
-    }
-
+    
     /**
      * Update the values of the special registers fields.
      */

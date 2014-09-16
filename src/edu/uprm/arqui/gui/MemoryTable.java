@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -60,7 +61,21 @@ public class MemoryTable extends JPanel {
             private static final long serialVersionUID = 1L;
 
             public boolean isCellEditable(int row, int column) {
-                return false;
+            	if (column < 1) {
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+            
+            public void setValueAt(Object value, int row, int col) {
+            	String data = String.valueOf(value);
+                if (data.matches("[0-9A-Fa-f]{1,2}")) {
+                    memory.setDataAt(row, (byte) Integer.parseInt(data, 16));
+                } else {
+                    JOptionPane.showMessageDialog(null, "Incorrect Input Data.", "Error", col);
+                }
+                updateMemory();
             }
         };
         table = new JTable(model);

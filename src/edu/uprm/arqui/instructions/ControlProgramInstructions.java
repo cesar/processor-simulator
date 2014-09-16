@@ -41,7 +41,7 @@ public class ControlProgramInstructions {
 	public static void jmpa(Instruction instruction) {
 		RelativeAddressingMode raMode = (RelativeAddressingMode) instruction;
 		int value = raMode.getOperand(); // There are 11-bits here, which means that the pc can go out of the memory
-		int address = NumberUtils.getUnsignedValueOf(value, 3, Processor.PC_SIZE - 1, Processor.PC_SIZE); 
+		int address = (value & 0x0FF);
 		pc.setPc(address);
 	}
 	
@@ -70,7 +70,7 @@ public class ControlProgramInstructions {
 		RelativeAddressingMode raMode = (RelativeAddressingMode) instruction;
 		if(condition.getBitCondition()) {
 			int value = raMode.getOperand(); // There are 11-bits here, which means that the pc can go out of the memory
-			int address = NumberUtils.getUnsignedValueOf(value, 3, Processor.PC_SIZE - 1, Processor.PC_SIZE);
+			int address = (value & 0x0FF);
 			pc.setPc(address);
 		}
 	}
@@ -86,6 +86,7 @@ public class ControlProgramInstructions {
 		int counter = NumberUtils.getUnsignedValueOf(registers.getRegister(daMode.getRegA()), 0, Processor.GENERAL_REGISTER_SIZE - 1, Processor.GENERAL_REGISTER_SIZE);
 		while(counter != 0) {
 			int address = daMode.getOperand();
+			address = (address & 0x0FF);
 			pc.setPc(address);
 			counter--;
 			registers.setRegister((byte) (counter), daMode.getRegA());
